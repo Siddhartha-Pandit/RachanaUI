@@ -1,0 +1,154 @@
+@import "./BrandSetting.css";
+
+/* ============================================================================
+   BUTTON — Fully Design-System Driven
+   ============================================================================ */
+
+.btn {
+  font-family: inherit;
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  transition:
+    transform var(--motion-fast),
+    box-shadow var(--motion-fast),
+    background var(--motion-fast),
+    color var(--motion-fast);
+  
+  font-weight: var(--font-weight-medium);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+
+/* --------------------------- SIZES --------------------------------------- */
+.btn--sm { padding: 6px 12px; font-size: var(--type-body-sm); }
+.btn--md { padding: 10px 20px; font-size: var(--type-body-md); }
+.btn--lg { padding: 14px 28px; font-size: var(--type-body-lg); }
+
+/* Add padding when loading to avoid overlap */
+.btn--sm.btn--loading { padding-left: 32px; }
+.btn--md.btn--loading { padding-left: 40px; }
+.btn--lg.btn--loading { padding-left: 48px; }
+
+
+/* --------------------------- PRIMARY ------------------------------------- */
+.btn--primary {
+  background: var(--color-primary-500);
+  color: var(--text-on-primary);
+  box-shadow: var(--shadow-1);
+}
+
+.btn--primary:hover:not(.btn--disabled):not(.btn--loading) {
+  background: var(--color-primary-600);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active:not(.btn--disabled):not(.btn--loading) {
+  transform: scale(0.98);
+}
+
+.btn--primary.btn--loading {
+  background: var(--color-primary-400);
+  opacity: 0.9;
+}
+
+
+/* --------------------------- SECONDARY ----------------------------------- */
+.btn--secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn--secondary:hover:not(.btn--disabled):not(.btn--loading) {
+  background: var(--color-neutral-50);
+}
+
+:root.dark .btn--secondary:hover:not(.btn--disabled):not(.btn--loading) {
+  background: rgba(255,255,255,0.08);
+}
+
+.btn--secondary.btn--loading {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  background: var(--color-neutral-50);
+}
+
+
+/* --------------------------- GHOST ---------------------------------------- */
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.btn--ghost:hover:not(.btn--disabled):not(.btn--loading) {
+  background: var(--color-neutral-50);
+}
+
+:root.dark .btn--ghost:hover:not(.btn--disabled):not(.btn--loading) {
+  background: rgba(255,255,255,0.08);
+}
+
+.btn--ghost.btn--loading {
+  color: var(--text-secondary);
+  background: var(--color-neutral-50);
+}
+
+
+/* --------------------------- DESTRUCTIVE ---------------------------------- */
+.btn--destructive {
+  background: var(--color-error-500);
+  color: white;
+}
+
+.btn--destructive:hover:not(.btn--disabled):not(.btn--loading) {
+  background: #dc2626;
+}
+
+.btn--destructive.btn--loading {
+  background: #f87171;
+}
+
+
+/* --------------------------- FULL WIDTH ----------------------------------- */
+.btn--full {
+  width: 100%;
+}
+
+
+/* --------------------------- DISABLED ------------------------------------- */
+.btn--disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* --------------------------- LOADING -------------------------------------- */
+
+/* Reserve left space for spinner */
+.btn__spinner-wrapper {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dim text but keep it visible */
+.btn--loading .btn__label {
+  opacity: 0.75;
+}
+
+/* Prevent interaction */
+.btn--loading {
+  cursor: not-allowed;
+}

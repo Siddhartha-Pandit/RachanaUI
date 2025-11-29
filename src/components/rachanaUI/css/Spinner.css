@@ -1,0 +1,49 @@
+/* ========================================================================= */
+/* UNIVERSAL SPINNER — USING BRAND TOKENS                                    */
+/* ========================================================================= */
+
+.spinner {
+    display: inline-block;
+    border-radius: 999px;
+
+    /* Default Tokens */
+    --spinner-size: 20px;
+    --spinner-border: 2px;
+    /* --spinner-base: var(--border); */
+    --spinner-base: rgba(3,0,20, 0.12);
+    --spinner-color: var(--color-primary-500);
+
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    
+    border: var(--spinner-border) solid var(--spinner-base);
+    border-top-color: var(--spinner-color);
+
+    animation: spinner-rotate 0.75s linear infinite;
+}
+
+/* --------------------- SIZE VARIANTS ------------------------------------ */
+.spinner-xs  { --spinner-size: 12px; }
+.spinner-sm  { --spinner-size: 16px; }
+.spinner-md  { --spinner-size: 20px; }
+.spinner-lg  { --spinner-size: 28px; }
+.spinner-xl  { --spinner-size: 36px; }
+
+/* --------------------- COLOR VARIANTS ----------------------------------- */
+.spinner-primary   { --spinner-color: var(--color-primary-500); }
+.spinner-secondary { --spinner-color: var(--text-secondary); }
+.spinner-success   { --spinner-color: var(--color-success-500); }
+.spinner-error     { --spinner-color: var(--color-error-500); }
+.spinner-warning   { --spinner-color: var(--color-warning-500); }
+.spinner-neutral   { --spinner-color: var(--color-neutral-400); }
+
+/* Dark mode override */
+:root.dark .spinner {
+    --spinner-base: rgba(253,253,253,0.12);
+}
+
+@keyframes spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
