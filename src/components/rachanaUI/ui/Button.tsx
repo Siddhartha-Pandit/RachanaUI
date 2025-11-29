@@ -1,52 +1,55 @@
 import React from "react";
 import Spinner from "./Spinner";
-import "../css/Button.css"
+import "../css/Button.css";
 
 type ButtonProps = {
-    children: React.ReactNode;
-    variant?: "primary" | "secondary" | "ghost" | "destructive";
-    size?: "sm" | "md" | "lg";
-    fullWidth?: boolean;
-    loading?: boolean;
-    disabled?: boolean;
-    className?: string;
-    onClick?: () => void;
+  children: React.ReactNode;
+  variant?: "primary" | "secondary" | "ghost" | "destructive";
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  className?: string;
+  onClick?: () => void;
 };
 
 export default function Button({
-    children,
-    variant = "primary",
-    size = "md",
-    fullWidth = false,
-    loading = false,
-    disabled = false,
-    className = "",
-    onClick
+  children,
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  loading = false,
+  disabled = false,
+  className = "",
+  onClick
 }: ButtonProps) {
-   
-    const classes=`btn btn--${variant}
+  const classes = `
+    btn
+    btn--${variant}
     btn--${size}
-    ${fullWidth ? "btn--fullWidth" : ""}
+    ${fullWidth ? "btn--full" : ""}
     ${loading ? "btn--loading" : ""}
     ${disabled ? "btn--disabled" : ""}
     ${className}
-    `.trim();
-    
-   
+  `.trim();
 
-    return (
-        <button
-           className={classes}
-           onClick={onClick}
-           disabled={disabled || loading}
-        >
-            {loading && (
-                <span className="btn__spinner-wrapper">
-                <Spinner size="sm" variant={variant==="primary"?"primary":"secondary"} />
-                </span>
-            )}
+  return (
+    <button
+      className={classes}
+      onClick={onClick}
+      disabled={disabled || loading}
+    >
+      {/* Invisible content to keep width + height fixed */}
+      <span className="btn__content" aria-hidden={loading}>
+        {children}
+      </span>
 
-           <span className="btn__label">{children}</span>
-        </button>
-    );
+      {/* Spinner overlay */}
+      {loading && (
+        <span className="btn__spinner">
+          <Spinner size="sm" variant="neutral" />
+        </span>
+      )}
+    </button>
+  );
 }

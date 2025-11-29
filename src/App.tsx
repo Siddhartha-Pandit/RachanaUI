@@ -15,9 +15,9 @@ function App() {
   }
   return (
     <>
-      <div>
-        <Spinner/>
-        <Button loading={true} onClick={()=>handleClick()}>Button </Button>
+      <div style={{margin:'10px'}}>
+        <Spinner variant={'primary'}/>
+        <Button loading={true}  size={'md'} onClick={()=>handleClick()}>Button </Button>
         <ThemeToggle />
       </div>
     </>

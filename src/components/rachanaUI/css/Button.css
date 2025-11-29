@@ -1,9 +1,10 @@
-@import "./BrandSetting.css";
-
 /* ============================================================================
-   BUTTON — Fully Design-System Driven
+   Button.css - Button Component Styles
    ============================================================================ */
 
+@import "./BrandSetting.css";
+
+/* Base Button Styles */
 .btn {
   font-family: inherit;
   border-radius: var(--radius-sm);
@@ -15,25 +16,31 @@
     box-shadow var(--motion-fast),
     background var(--motion-fast),
     color var(--motion-fast);
-  
   font-weight: var(--font-weight-medium);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  position: relative;
+
+  position: relative; /* Needed for loading overlay */
 }
 
 
 /* --------------------------- SIZES --------------------------------------- */
-.btn--sm { padding: 6px 12px; font-size: var(--type-body-sm); }
-.btn--md { padding: 10px 20px; font-size: var(--type-body-md); }
-.btn--lg { padding: 14px 28px; font-size: var(--type-body-lg); }
+.btn--sm { 
+  padding: 6px 12px; 
+  font-size: var(--type-body-sm); 
+}
 
-/* Add padding when loading to avoid overlap */
-.btn--sm.btn--loading { padding-left: 32px; }
-.btn--md.btn--loading { padding-left: 40px; }
-.btn--lg.btn--loading { padding-left: 48px; }
+.btn--md { 
+  padding: 10px 20px; 
+  font-size: var(--type-body-md); 
+}
+
+.btn--lg { 
+  padding: 14px 28px; 
+  font-size: var(--type-body-lg); 
+}
 
 
 /* --------------------------- PRIMARY ------------------------------------- */
@@ -45,7 +52,6 @@
 
 .btn--primary:hover:not(.btn--disabled):not(.btn--loading) {
   background: var(--color-primary-600);
-  transform: translateY(-1px);
 }
 
 .btn--primary:active:not(.btn--disabled):not(.btn--loading) {
@@ -130,25 +136,35 @@
 }
 
 
-/* --------------------------- LOADING -------------------------------------- */
+/* ============================================================================
+   FIXED-SIZE LOADING BEHAVIOR
+   ============================================================================ */
 
-/* Reserve left space for spinner */
-.btn__spinner-wrapper {
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  left: 12px;
+/* Keep original width + height */
+.btn__content {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: opacity var(--motion-fast);
 }
 
-/* Dim text but keep it visible */
-.btn--loading .btn__label {
-  opacity: 0.75;
+/* Hide content when loading but keep space */
+.btn--loading .btn__content {
+  opacity: 0;      /* visually hidden */
+  visibility: hidden; /* but layout remains */
 }
 
-/* Prevent interaction */
+/* Center spinner */
+.btn__spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Ensure spinner always fits */
 .btn--loading {
   cursor: not-allowed;
 }

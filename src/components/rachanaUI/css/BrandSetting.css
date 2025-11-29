@@ -1,5 +1,5 @@
 /* ============================================================================ */
-/*  DESIGN SYSTEM CSS LIBRARY — LIGHT + DARK THEME                              */
+/*  DESIGN SYSTEM CSS LIBRARY — GOLDEN RATIO THEME (LIGHT + DARK)              */
 /*  Author: Lead UX/UI Designer (Your Company)                                  */
 /*  Purpose: One CSS file that powers ANY UI you build.                         */
 /* ============================================================================ */
@@ -16,14 +16,14 @@
   --color-primary-200: #91b8f3;
   --color-primary-300: #5a94ed;
   --color-primary-400: #3d82ea;
-  --color-primary-500: #2371e7; /* BRAND */
+  --color-primary-500: #2371e7;
   --color-primary-600: #1f63cb;
   --color-primary-700: #1a55ad;
   --color-primary-800: #133e7f;
   --color-primary-900: #0e2d5c;
 
   /* NEUTRALS (Light mode) */
-  --color-neutral-0:   #fdfdfd; /* BRAND WHITE */
+  --color-neutral-0:   #fdfdfd;
   --color-neutral-50:  #f5f5f6;
   --color-neutral-100: #e1e1e5;
   --color-neutral-200: #c8c7cc;
@@ -33,7 +33,7 @@
   --color-neutral-600: #343146;
   --color-neutral-700: #201d2f;
   --color-neutral-800: #151224;
-  --color-neutral-900: #030014; /* BRAND DARK */
+  --color-neutral-900: #030014;
 
   /* FEEDBACK */
   --color-success-500: #16a34a;
@@ -62,33 +62,32 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --type-display-xl: 48px;
-  --type-display-lg: 40px;
-  --type-h1: 32px;
-  --type-h2: 28px;
-  --type-h3: 22px;
-  --type-body-lg: 18px;
+  --type-body-sm: 10px;
   --type-body-md: 16px;
-  --type-body-sm: 14px;
-  --type-caption: 12px;
+  --type-body-lg: 26px;
+  --type-h3: 42px;
+  --type-h2: 68px;
+  --type-h1: 110px;
+  --type-display-lg: 177px;
+  --type-display-xl: 287px;
 
-  /* SPACING (4px scale) */
+  /* SPACING (Golden Ratio Scale) */
   --space-0: 0;
   --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
-  --space-9: 64px;
+  --space-2: 6px;
+  --space-3: 10px;
+  --space-4: 17px;
+  --space-5: 27px;
+  --space-6: 44px;
+  --space-7: 72px;
+  --space-8: 116px;
+  --space-9: 188px;
 
   /* RADII */
   --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 17px;
   --radius-pill: 9999px;
 
   /* SHADOWS */
@@ -100,7 +99,7 @@
   /* MOTION */
   --motion-fast: 120ms cubic-bezier(.2,.8,.2,1);
   --motion-medium: 240ms cubic-bezier(.2,.8,.2,1);
-  --motion-long: 360ms cubic-bezier(.2,.8,.2,1);
+  --motion-long: 392ms cubic-bezier(.2,.8,.2,1);
 }
 
 
@@ -119,7 +118,6 @@
 
   --border: rgba(255,255,255,0.12);
 
-  /* COMPONENT SURFACES */
   --color-neutral-0: #0c0a1c;
   --color-neutral-900: #fdfdfd;
 
@@ -127,11 +125,6 @@
   --shadow-2: 0 6px 12px rgba(0,0,0,0.5);
   --shadow-3: 0 16px 40px rgba(0,0,0,0.6);
 }
-
-/* Toggle usage:
-   document.documentElement.classList.add("dark")
-   document.documentElement.classList.remove("dark")
-*/
 
 
 /* ============================================================================ */
@@ -147,197 +140,6 @@ html, body {
   background: var(--color-surface);
   color: var(--text-primary);
   font-family: var(--font-family-system);
-  font-size: 16px;
+  font-size: var(--type-body-md);
   line-height: 1.5;
 }
-
-/* Links */
-a {
-  color: var(--color-primary-500);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-
-/* ============================================================================ */
-/* 4. COMPONENTS (BUTTON, INPUT, CARD, MODAL, TOAST, NAVIGATION)                */
-/* ============================================================================ */
-
-/* --------------------------- BUTTONS --------------------------------------- */
-
-.btn {
-  font-family: inherit;
-  border-radius: var(--radius-sm);
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  transition: transform var(--motion-fast), box-shadow var(--motion-fast), background var(--motion-fast);
-  font-weight: var(--font-weight-medium);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Primary */
-.btn--primary {
-  background: var(--color-primary-500);
-  color: var(--text-on-primary);
-  box-shadow: var(--shadow-1);
-}
-.btn--primary:hover {
-  background: var(--color-primary-600);
-  transform: translateY(-1px);
-}
-.btn--primary:active {
-  transform: scale(0.98);
-}
-
-/* Secondary */
-.btn--secondary {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-}
-.btn--secondary:hover {
-  background: var(--color-neutral-50);
-}
-:root.dark .btn--secondary:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-/* Ghost */
-.btn--ghost {
-  background: transparent;
-  color: var(--text-primary);
-}
-.btn--ghost:hover {
-  background: var(--color-neutral-50);
-}
-:root.dark .btn--ghost:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-/* Disabled */
-.btn--disabled,
-.btn:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
-
-/* --------------------------- INPUTS --------------------------------------- */
-
-.input {
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: var(--color-surface-elevated);
-  color: var(--text-primary);
-  width: 100%;
-  transition: border var(--motion-fast), box-shadow var(--motion-fast);
-}
-
-.input:focus {
-  outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px rgba(35,113,231,0.2);
-}
-
-.input--error {
-  border-color: var(--color-error-500);
-}
-
-/* --------------------------- CARD ----------------------------------------- */
-
-.card {
-  background: var(--color-surface-elevated);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  box-shadow: var(--shadow-1);
-  color: var(--text-primary);
-}
-
-/* --------------------------- MODAL ---------------------------------------- */
-
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: var(--color-overlay-60);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal {
-  background: var(--color-surface-elevated);
-  padding: var(--space-6);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-3);
-  width: min(500px, 90%);
-}
-
-/* --------------------------- TOAST ---------------------------------------- */
-
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  padding: 12px 16px;
-  background: var(--color-neutral-900);
-  color: white;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-2);
-  animation: toast-slide var(--motion-medium) ease;
-}
-
-@keyframes toast-slide {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
-}
-
-/* --------------------------- NAVIGATION ----------------------------------- */
-
-.navbar {
-  height: 56px;
-  display: flex;
-  align-items: center;
-  padding: 0 var(--space-4);
-  background: var(--color-surface-elevated);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background: var(--color-surface-elevated);
-  border-right: 1px solid var(--border);
-  padding: var(--space-4);
-}
-
-.sidebar-item {
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  color: var(--text-primary);
-}
-.sidebar-item:hover {
-  background: var(--color-neutral-50);
-}
-:root.dark .sidebar-item:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-.sidebar-item.active {
-  background: var(--color-primary-50);
-  color: var(--color-primary-700);
-}
-:root.dark .sidebar-item.active {
-  background: rgba(35,113,231,0.15);
-  color: var(--color-primary-300);
-}
-
-
-/* ============================================================================ */
-/*  END OF DESIGN SYSTEM CSS                                                    */
-/* ============================================================================ */
