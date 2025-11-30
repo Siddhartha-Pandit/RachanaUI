@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { initializeTheme, setTheme } from "./theme";
 import type { Theme } from "./theme";
-
+import Button from "../ui/Button";
 export default function ThemeToggle() {
   const [theme, setThemeState] = useState<Theme>("system");
 
@@ -16,9 +16,9 @@ export default function ThemeToggle() {
 
   return (
     <div style={{ display: "flex", gap: "12px" }}>
-      <button onClick={() => changeTheme("light")}>Light</button>
-      <button onClick={() => changeTheme("dark")}>Dark</button>
-      <button onClick={() => changeTheme("system")}>System</button>
+      <Button onClick={() => changeTheme("light")}>Light</Button>
+      <Button onClick={() => changeTheme("dark")}>Dark</Button>
+      <Button onClick={() => changeTheme("system")}>System</Button>
     </div>
   );
 }
