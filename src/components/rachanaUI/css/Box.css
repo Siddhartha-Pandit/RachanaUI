@@ -1,0 +1,71 @@
+/* Base Box */
+.ui-box {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+/* Content sections */
+.ui-box__header {
+  margin-bottom: var(--space-4);
+}
+
+.ui-box__footer {
+  margin-top: var(--space-4);
+}
+
+/* Variants -------------------------------------------------------- */
+
+.ui-box--card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+.ui-box--panel {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+}
+
+.ui-box--sheet {
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+/* Interactive behavior -------------------------------------------- */
+
+.ui-box--interactive {
+  cursor: pointer;
+}
+
+.ui-box--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.ui-box--interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-1);
+}
+
+.ui-box--interactive:focus {
+  outline: 2px solid var(--color-primary-300);
+  outline-offset: 2px;
+}
+
+/* Selected state */
+.ui-box--selected {
+  outline: 2px solid var(--color-primary-300);
+}
+
+/* Disabled state */
+.ui-box--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

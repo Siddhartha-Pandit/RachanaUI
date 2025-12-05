@@ -4,6 +4,7 @@ import Button from "./components/rachanaUI/ui/Button";
 import Spinner from "./components/rachanaUI/ui/Spinner";
 import Resizable from "./components/rachanaUI/ui/Resizable";
 import Draggable from "./components/rachanaUI/ui/Draggable";
+import { Box } from "./components/rachanaUI/ui/Box";
 
 function App() {
   const boundsRef = useRef<HTMLElement | null>(null);
@@ -127,7 +128,15 @@ function App() {
             <p>Some text</p>
           </div>
         </Draggable>
+        <Box
+  header={<h3>Profile Summary</h3>}
+  footer={<div>Footer info here</div>}
+>
+  This is the content inside the box.
+</Box>
+
       </div>
+     
     </div>
   );
 }
