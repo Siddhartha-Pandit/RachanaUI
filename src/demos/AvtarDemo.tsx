@@ -177,6 +177,7 @@ export default function AvatarDemo() {
         <h3>Avatar Group</h3>
 
         <AvatarGroup max={3}>
+          <Avatar name="Rahul Pandit" />
           <Avatar name="User One" />
           <Avatar name="User Two" />
           <Avatar name="User Three" />
