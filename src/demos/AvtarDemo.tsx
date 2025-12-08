@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, AvatarGroup } from "../components/rachanaUI/ui/Avatar";
 
 /* ========================================================================= */

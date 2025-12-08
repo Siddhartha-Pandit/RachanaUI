@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Overlay from "../components/rachanaUI/ui/Overlay";
 
 /**

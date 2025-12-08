@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/Divider.css";
 
 type DividerProps = {
