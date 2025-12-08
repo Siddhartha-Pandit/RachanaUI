@@ -1,6 +1,5 @@
-import React, {useEffect,useMemo,useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../css/Avatar.css";
-
 export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl";
 export type AvatarShape = "circle" | "rounded";
 export type AvatarStatus = "online" | "away" | "busy" | "offline";
@@ -18,7 +17,6 @@ export type AvatarProps = {
   className?: string;
   style?: React.CSSProperties;
 };
-
 function getInitials(name: string, size: AvatarSize): string {
   if (!name) return "?";
 
@@ -33,35 +31,29 @@ function getInitials(name: string, size: AvatarSize): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-function hashString(input: string): number {
+function hashString(input: string) {
   let hash = 0;
   for (let i = 0; i < input.length; i++) {
     hash = (hash << 5) - hash + input.charCodeAt(i);
-    hash |= 0; // keep 32-bit
+    hash |= 0;
   }
   return Math.abs(hash);
 }
 
-function getAvatarColor(name: string): string {
-  const safeName = name?.trim().toLowerCase() || "user";
-  const hash = hashString(safeName);
+function getAvatarColor(name: string) {
+  const safe = name?.trim().toLowerCase() || "user";
+  const hash = hashString(safe);
 
-  // Optional brand band: blue → violet (210°–280°)
-  const BRAND_START = 210;
-  const BRAND_RANGE = 70;
-
-  const hue = BRAND_START + (hash % BRAND_RANGE);
-  let saturation = 65;
-  let lightness = 40;
-
-  // Darken if needed (conservative approach)
-  if (lightness > 42) lightness = 40;
-
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  // brand-friendly blue → violet range
+  const hue = 210 + (hash % 70);
+  return `hsl(${hue}, 65%, 40%)`;
 }
 
+/* ========================================================================= */
+/* AVATAR COMPONENT                                                          */
+/* ========================================================================= */
 
-export default function Avatar({
+export function Avatar({
   name,
   src,
   alt,
@@ -72,21 +64,14 @@ export default function Avatar({
   clickable = false,
   onClick,
   className = "",
+  style,
 }: AvatarProps) {
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const showImage = src && !imgError && imgLoaded;
-
-  const initials = useMemo(
-    () => getInitials(name, size),
-    [name, size]
-  );
-
-  const fallbackColor = useMemo(
-    () => getAvatarColor(name),
-    [name]
-  );
+  const showImage = Boolean(src && !imgError && imgLoaded);
+  const initials = useMemo(() => getInitials(name, size), [name, size]);
+  const bgColor = useMemo(() => getAvatarColor(name), [name]);
 
   useEffect(() => {
     setImgError(false);
@@ -104,18 +89,17 @@ export default function Avatar({
     .filter(Boolean)
     .join(" ");
 
-  const ariaLabel =
-    alt || (name ? `Avatar – ${name}` : "User avatar");
+  const ariaLabel = alt || (name ? `Avatar – ${name}` : "User avatar");
 
   return (
     <div
       className={classes}
+      style={style}
       role={clickable ? "button" : undefined}
       tabIndex={clickable && !disabled ? 0 : undefined}
       aria-label={clickable ? ariaLabel : undefined}
       onClick={clickable && !disabled ? onClick : undefined}
     >
-      {/* Image */}
       {src && !imgError && (
         <img
           src={src}
@@ -123,28 +107,87 @@ export default function Avatar({
           className="avatar__image"
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgError(true)}
-          draggable={false}
         />
       )}
 
-      {/* Fallback */}
       {!showImage && (
         <span
           className="avatar__fallback"
-          style={{ backgroundColor: fallbackColor }}
-          aria-hidden="true"
+          style={{ backgroundColor: bgColor }}
         >
           {initials}
         </span>
       )}
 
-      {/* Status */}
       {status && (
-        <span
-          className={`avatar__status avatar__status--${status}`}
-          aria-hidden="true"
-        />
+        <span className={`avatar__status avatar__status--${status}`} />
       )}
     </div>
   );
+}
+
+export type AvatarGroupProps = {
+  children: React.ReactElement<AvatarProps>[];
+  max?: number;
+  size?: AvatarSize;
+  overlapPx?: number;
+};
+
+export function AvatarGroup({
+  children,
+  max = 3,
+  size = "md",
+  overlapPx,
+}: AvatarGroupProps) {
+  const avatars = React.Children.toArray(
+    children
+  ) as React.ReactElement<AvatarProps>[];
+
+  const visible = avatars.slice(0, max);
+  const hidden = avatars.length - visible.length;
+
+  const overlap = overlapPx ?? getDefaultOverlap(size);
+
+  return (
+    <div className="avatar-group">
+      {visible.map((child, index) => (
+        <div
+          key={index}
+          className="avatar-group__item"
+          style={{
+            marginLeft: index === 0 ? 0 : -overlap,
+            zIndex: visible.length - index,
+          }}
+        >
+          {React.cloneElement(child, { size })}
+        </div>
+      ))}
+
+      {hidden > 0 && (
+        <div
+          className="avatar-group__item"
+          style={{ marginLeft: -overlap }}
+        >
+          <Avatar name={`+${hidden}`} size={size} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function getDefaultOverlap(size: AvatarSize) {
+  switch (size) {
+    case "xs":
+      return 10;
+    case "sm":
+      return 12;
+    case "md":
+      return 14;
+    case "lg":
+      return 18;
+    case "xl":
+      return 24;
+    default:
+      return 14;
+  }
 }

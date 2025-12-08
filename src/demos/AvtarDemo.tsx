@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../components/rachanaUI/ui/Avatar";
+import { Avatar, AvatarGroup } from "../components/rachanaUI/ui/Avatar";
 
 /* ========================================================================= */
 /* AVATAR DEMO — ALL PRACTICAL USE CASES                                      */
@@ -25,7 +25,7 @@ export default function AvatarDemo() {
         <h3>Basic Avatar</h3>
         <div style={{ display: "flex", gap: 12 }}>
           <Avatar name="Riya Sharma" src="/img/riya.jpg" />
-          <Avatar name="Amit Kumar" /> {/* fallback initials */}
+          <Avatar name="Amit Kumar" />
           <Avatar name="SingleName" />
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function AvatarDemo() {
       {/* 5️⃣ CLICKABLE / INTERACTIVE AVATARS                    */}
       {/* ====================================================== */}
       <section>
-        <h3>Clickable Avatar (Profile Menu)</h3>
+        <h3>Clickable Avatar</h3>
         <div style={{ display: "flex", gap: 12 }}>
           <Avatar
             name="Clickable User"
@@ -100,7 +100,7 @@ export default function AvatarDemo() {
       </section>
 
       {/* ====================================================== */}
-      {/* 7️⃣ LIST ITEM (REAL UI PATTERN)                        */}
+      {/* 7️⃣ LIST / ROW USAGE                                   */}
       {/* ====================================================== */}
       <section>
         <h3>List / Row Usage</h3>
@@ -147,7 +147,6 @@ export default function AvatarDemo() {
               <th style={{ textAlign: "left", padding: 8 }}>Status</th>
             </tr>
           </thead>
-
           <tbody>
             <tr>
               <td style={{ padding: 8 }}>
@@ -158,7 +157,6 @@ export default function AvatarDemo() {
               </td>
               <td style={{ padding: 8 }}>Active</td>
             </tr>
-
             <tr>
               <td style={{ padding: 8 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -173,21 +171,22 @@ export default function AvatarDemo() {
       </section>
 
       {/* ====================================================== */}
-      {/* 9️⃣ AVATAR GROUP (INLINE STACK)                        */}
+      {/* 9️⃣ AVATAR GROUP (CORRECT WAY)                         */}
       {/* ====================================================== */}
       <section>
         <h3>Avatar Group</h3>
 
-        <div style={{ display: "flex" }}>
+        <AvatarGroup max={3}>
           <Avatar name="User One" />
-          <Avatar name="User Two" style={{ marginLeft: -8 } as any} />
-          <Avatar name="User Three" style={{ marginLeft: -8 } as any} />
-          <Avatar name="+3" />
-        </div>
+          <Avatar name="User Two" />
+          <Avatar name="User Three" />
+          <Avatar name="User Four" />
+          <Avatar name="User Five" />
+        </AvatarGroup>
       </section>
 
       {/* ====================================================== */}
-      {/* 🔟 EMPTY / UNKNOWN USER                                */}
+      {/* 🔟 UNKNOWN / EMPTY USER                                */}
       {/* ====================================================== */}
       <section>
         <h3>Unknown / Empty State</h3>

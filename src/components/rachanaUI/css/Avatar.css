@@ -1,9 +1,5 @@
 @import "./BrandSetting.css";
 
-/* ========================================================================= */
-/* BASE AVATAR                                                               */
-/* ========================================================================= */
-
 .avatar {
   position: relative;
   display: inline-flex;
@@ -11,8 +7,10 @@
   justify-content: center;
   overflow: hidden;
   user-select: none;
+  background-color: var(--color-neutral-100);
 }
 
+/* Shape */
 .avatar--circle {
   border-radius: 50%;
 }
@@ -21,24 +19,18 @@
   border-radius: var(--radius-sm);
 }
 
-/* ========================================================================= */
-/* SIZES (Golden Ratio Aligned)                                              */
-/* ========================================================================= */
-
 .avatar--xs { width: 24px; height: 24px; font-size: 10px; }
 .avatar--sm { width: 32px; height: 32px; font-size: 12px; }
 .avatar--md { width: 40px; height: 40px; font-size: 16px; }
 .avatar--lg { width: 56px; height: 56px; font-size: 20px; }
 .avatar--xl { width: 80px; height: 80px; font-size: 28px; }
 
-/* ========================================================================= */
-/* IMAGE & FALLBACK                                                          */
-/* ========================================================================= */
 
 .avatar__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .avatar__fallback {
@@ -53,10 +45,6 @@
   text-transform: uppercase;
 }
 
-/* ========================================================================= */
-/* STATUS DOT                                                                */
-/* ========================================================================= */
-
 .avatar__status {
   position: absolute;
   bottom: 0;
@@ -64,9 +52,10 @@
   transform: translate(25%, 25%);
   border-radius: 50%;
   border: 2px solid var(--color-surface);
+  pointer-events: none;
 }
 
-/* Size relative to avatar */
+/* Size proportional to avatar */
 .avatar--xs .avatar__status { width: 6px; height: 6px; }
 .avatar--sm .avatar__status { width: 8px; height: 8px; }
 .avatar--md .avatar__status { width: 10px; height: 10px; }
@@ -74,18 +63,17 @@
 .avatar--xl .avatar__status { width: 18px; height: 18px; }
 
 /* Status colors */
-.avatar__status--online { background: var(--color-success-500); }
-.avatar__status--away { background: var(--color-warning-500); }
-.avatar__status--busy { background: var(--color-error-500); }
-.avatar__status--offline { background: var(--color-neutral-300); }
+.avatar__status--online { background-color: var(--color-success-500); }
+.avatar__status--away   { background-color: var(--color-warning-500); }
+.avatar__status--busy   { background-color: var(--color-error-500); }
+.avatar__status--offline{ background-color: var(--color-neutral-300); }
 
-/* ========================================================================= */
-/* INTERACTION STATES                                                        */
-/* ========================================================================= */
 
 .avatar--clickable {
   cursor: pointer;
-  transition: transform var(--motion-fast), box-shadow var(--motion-fast);
+  transition:
+    transform var(--motion-fast),
+    box-shadow var(--motion-fast);
 }
 
 .avatar--clickable:hover {
@@ -99,4 +87,15 @@
 .avatar--disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-group__item {
+  position: relative;
+  display: inline-flex;
 }
