@@ -8,7 +8,7 @@ import DraggableDemo from "./demos/DraggableDemo";
 import OverlayDemo from "./demos/OverlayDemo";
 import ResizableDemo from "./demos/ResizableDemo";
 import SkeletonDemo from "./demos/SkeletonDemo";
-
+import SortableDemo from "./demos/SortableDemo";
 function App() {
   return (
     <div
@@ -54,6 +54,9 @@ function App() {
 
       <Box>
         <SkeletonDemo />
+      </Box>
+      <Box>
+        <SortableDemo />
       </Box>
     </div>
   );
