@@ -1,0 +1,102 @@
+@import "./BrandSetting.css";
+
+/* ========================================================================= */
+/* BASE AVATAR                                                               */
+/* ========================================================================= */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.avatar--circle {
+  border-radius: 50%;
+}
+
+.avatar--rounded {
+  border-radius: var(--radius-sm);
+}
+
+/* ========================================================================= */
+/* SIZES (Golden Ratio Aligned)                                              */
+/* ========================================================================= */
+
+.avatar--xs { width: 24px; height: 24px; font-size: 10px; }
+.avatar--sm { width: 32px; height: 32px; font-size: 12px; }
+.avatar--md { width: 40px; height: 40px; font-size: 16px; }
+.avatar--lg { width: 56px; height: 56px; font-size: 20px; }
+.avatar--xl { width: 80px; height: 80px; font-size: 28px; }
+
+/* ========================================================================= */
+/* IMAGE & FALLBACK                                                          */
+/* ========================================================================= */
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar__fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+}
+
+/* ========================================================================= */
+/* STATUS DOT                                                                */
+/* ========================================================================= */
+
+.avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+}
+
+/* Size relative to avatar */
+.avatar--xs .avatar__status { width: 6px; height: 6px; }
+.avatar--sm .avatar__status { width: 8px; height: 8px; }
+.avatar--md .avatar__status { width: 10px; height: 10px; }
+.avatar--lg .avatar__status { width: 14px; height: 14px; }
+.avatar--xl .avatar__status { width: 18px; height: 18px; }
+
+/* Status colors */
+.avatar__status--online { background: var(--color-success-500); }
+.avatar__status--away { background: var(--color-warning-500); }
+.avatar__status--busy { background: var(--color-error-500); }
+.avatar__status--offline { background: var(--color-neutral-300); }
+
+/* ========================================================================= */
+/* INTERACTION STATES                                                        */
+/* ========================================================================= */
+
+.avatar--clickable {
+  cursor: pointer;
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.avatar--clickable:hover {
+  box-shadow: var(--shadow-1);
+}
+
+.avatar--clickable:active {
+  transform: scale(0.97);
+}
+
+.avatar--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
