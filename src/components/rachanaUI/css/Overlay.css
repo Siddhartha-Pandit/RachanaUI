@@ -1,0 +1,72 @@
+/* ============================================================================
+   Overlay.css — Overlay / Backdrop / Scrim
+   ============================================================================ */
+
+@import "./BrandSetting.css";
+
+/* --------------------------------------------------------------------------
+   Base Overlay
+   -------------------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--color-neutral-900);
+  opacity: 0;
+
+  z-index: var(--z-overlay, 40);
+
+  transition: opacity var(--motion-medium) ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   Intensity Levels (context-driven)
+   -------------------------------------------------------------------------- */
+
+/* Drawer / Sheet */
+.overlay--low {
+  opacity: 0.35;
+}
+
+/* Modal / Dialog (default) */
+.overlay--medium {
+  opacity: 0.5;
+}
+
+/* Blocking loader / destructive confirmation */
+.overlay--high {
+  opacity: 0.65;
+}
+
+/* Dark mode softening */
+:root.dark .overlay--low {
+  opacity: 0.28;
+}
+
+:root.dark .overlay--medium {
+  opacity: 0.42;
+}
+
+:root.dark .overlay--high {
+  opacity: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   Interaction Control
+   -------------------------------------------------------------------------- */
+
+.overlay--dismissible {
+  cursor: pointer;
+}
+
+.overlay--blocking {
+  cursor: default;
+}
+
+/* Overlay never scrolls */
+.overlay {
+  overflow: hidden;
+}
