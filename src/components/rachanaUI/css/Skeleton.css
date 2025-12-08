@@ -1,0 +1,92 @@
+/* ============================================================================
+   Skeleton.css — Skeleton Loading Placeholder
+   ============================================================================ */
+
+@import "./BrandSetting.css";
+
+/* --------------------------------------------------------------------------
+   Base Skeleton
+   -------------------------------------------------------------------------- */
+
+.skeleton {
+  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-xs);
+  position: relative;
+  overflow: hidden;
+}
+
+:root.dark .skeleton {
+  background-color: var(--color-neutral-700);
+}
+
+/* --------------------------------------------------------------------------
+   Skeleton Types
+   -------------------------------------------------------------------------- */
+
+/* TEXT -------------------------------------------------------------------- */
+
+.skeleton--text {
+  height: 1em; /* matches text line-height */
+  width: 100%;
+  border-radius: var(--radius-xs);
+}
+
+.skeleton__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* golden-ratio spacing */
+}
+
+/* RECT -------------------------------------------------------------------- */
+
+.skeleton--rect {
+  border-radius: var(--radius-md);
+}
+
+/* CIRCLE ------------------------------------------------------------------ */
+
+.skeleton--circle {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+/* INLINE / CHIP ----------------------------------------------------------- */
+
+.skeleton--inline {
+  height: 24px;
+  width: 72px;
+  border-radius: var(--radius-pill);
+}
+
+/* --------------------------------------------------------------------------
+   Animation (Optional, Subtle)
+   -------------------------------------------------------------------------- */
+
+.skeleton--animated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: skeleton-shimmer var(--motion-long) infinite;
+}
+
+:root.dark .skeleton--animated::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

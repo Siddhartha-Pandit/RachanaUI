@@ -8,6 +8,7 @@ import { Box } from "./components/rachanaUI/ui/Box";
 import BadgeDemo from "./demos/BadgeDemo";
 import AvatarDemo from "./demos/AvtarDemo";
 import DividerDemo from "./demos/DividerDemo";
+import SkeletonDemo from "./demos/SkeletonDemo";
 function App() {
   const boundsRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
@@ -139,6 +140,7 @@ function App() {
 <BadgeDemo />
 <AvatarDemo/>
 <DividerDemo />
+<SkeletonDemo />
       </div>
      
     </div>
