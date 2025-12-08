@@ -5,7 +5,7 @@ import Spinner from "./components/rachanaUI/ui/Spinner";
 import Resizable from "./components/rachanaUI/ui/Resizable";
 import Draggable from "./components/rachanaUI/ui/Draggable";
 import { Box } from "./components/rachanaUI/ui/Box";
-
+import BadgeDemo from "./demos/BadgeDemo";
 function App() {
   const boundsRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
@@ -134,6 +134,7 @@ function App() {
 >
   This is the content inside the box.
 </Box>
+<BadgeDemo />
 
       </div>
      

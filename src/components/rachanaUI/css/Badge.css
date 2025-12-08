@@ -1,0 +1,204 @@
+@import "./BrandSetting.css";
+
+/* ========================================================================= */
+/* BADGE                                                                     */
+/* ========================================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 22px;
+  padding-inline: 10px;
+  padding-block: 3px;
+
+  gap: 6px;
+
+  font-family: var(--font-family-system);
+  font-size: var(--type-body-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+
+  white-space: nowrap;
+  vertical-align: middle;
+
+  border: 1px solid var(--border);
+  background-color: var(--color-neutral-50);
+  color: var(--text-secondary);
+
+  border-radius: var(--radius-pill);
+}
+
+/* Shapes ------------------------------------------------------------------ */
+
+.badge--pill {
+  border-radius: var(--radius-pill);
+}
+
+.badge--rounded {
+  border-radius: var(--radius-sm);
+}
+
+/* Variants: subtle -------------------------------------------------------- */
+
+.badge--subtle.badge--neutral {
+  background-color: var(--color-neutral-50);
+  color: var(--text-secondary);
+}
+
+.badge--subtle.badge--primary {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-100);
+}
+
+.badge--subtle.badge--success {
+  background-color: rgba(22, 163, 74, 0.12);
+  color: var(--color-success-500);
+  border-color: transparent;
+}
+
+.badge--subtle.badge--warning {
+  background-color: rgba(245, 158, 11, 0.14);
+  color: var(--color-warning-500);
+  border-color: transparent;
+}
+
+.badge--subtle.badge--error {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: var(--color-error-500);
+  border-color: transparent;
+}
+
+/* Dark-mode neutral subtle */
+:root.dark .badge--subtle.badge--neutral {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Variants: outline ------------------------------------------------------- */
+
+.badge--outline {
+  background-color: transparent;
+}
+
+.badge--outline.badge--neutral {
+  color: var(--text-secondary);
+}
+
+.badge--outline.badge--primary {
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-200);
+}
+
+.badge--outline.badge--success {
+  color: var(--color-success-500);
+  border-color: rgba(22, 163, 74, 0.55);
+}
+
+.badge--outline.badge--warning {
+  color: var(--color-warning-500);
+  border-color: rgba(245, 158, 11, 0.65);
+}
+
+.badge--outline.badge--error {
+  color: var(--color-error-500);
+  border-color: rgba(239, 68, 68, 0.65);
+}
+
+/* Variants: filled -------------------------------------------------------- */
+
+.badge--filled {
+  border-color: transparent;
+}
+
+.badge--filled.badge--neutral {
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-800);
+}
+
+.badge--filled.badge--primary {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
+.badge--filled.badge--success {
+  background-color: rgba(22, 163, 74, 0.2);
+  color: var(--color-success-500);
+}
+
+.badge--filled.badge--warning {
+  background-color: rgba(245, 158, 11, 0.22);
+  color: var(--color-warning-500);
+}
+
+.badge--filled.badge--error {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--color-error-500);
+}
+
+/* Icon -------------------------------------------------------------------- */
+
+.badge__icon {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Interactive / Disabled -------------------------------------------------- */
+
+.badge--interactive {
+  cursor: pointer;
+  transition: filter var(--motion-fast);
+}
+
+.badge--interactive:hover {
+  filter: brightness(0.96);
+}
+
+.badge--disabled {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ========================================================================= */
+/* BADGE OVERLAY (corner-attached badge, e.g. cart count)                    */
+/* ========================================================================= */
+
+.badge-overlay {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-overlay__badge {
+  position: absolute;
+}
+
+/* Positions */
+
+.badge-overlay--top-right .badge-overlay__badge {
+  top: 0;
+  right: 0;
+  transform: translate(40%, -40%);
+}
+
+.badge-overlay--top-left .badge-overlay__badge {
+  top: 0;
+  left: 0;
+  transform: translate(-40%, -40%);
+}
+
+.badge-overlay--bottom-right .badge-overlay__badge {
+  bottom: 0;
+  right: 0;
+  transform: translate(40%, 40%);
+}
+
+.badge-overlay--bottom-left .badge-overlay__badge {
+  bottom: 0;
+  left: 0;
+  transform: translate(-40%, 40%);
+}
