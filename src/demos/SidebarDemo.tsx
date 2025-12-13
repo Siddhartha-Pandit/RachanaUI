@@ -1,196 +1,242 @@
-// src/demos/SidebarDemo.tsx
+"use client";
 
-import { useState } from "react";
-import type { CSSProperties } from "react";
+import React, { useState } from "react";
 
-import Resizable from "../components/rachanaUI/ui/Resizable";
-
-import Navbar, {
+import {
   SidebarProvider,
   Sidebar,
   SidebarHeader,
-  SidebarContent,
   SidebarFooter,
+  SidebarContent,
+  SidebarInset,
+  SidebarTrigger,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarSeparator,
+  SidebarInput,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarGroup,
-  NavbarBrand,
-  NavbarSection,
-  NavbarActions,
-  NavbarSidebarToggle,
-} from "../components/rachanaUI/ui/SidebarNavbar";
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
+} from "../components/rachanaUI/ui/Sidebar";
+
+/* =========================================================
+   DEMO PAGE
+========================================================= */
 
 export default function SidebarDemo() {
-  const [active, setActive] = useState("dashboard");
+  const [active, setActive] = useState<
+    | "dashboard"
+    | "projects"
+    | "tasks"
+    | "team"
+    | "reports"
+    | "weekly"
+    | "monthly"
+    | "settings"
+    | "profile"
+  >("dashboard");
 
   return (
-    <SidebarProvider>
-      {/* ================= WHOLE APP SHELL ================= */}
-      <div style={{ display: "flex", minHeight: "100vh" }}>
-        {/* =============== LEFT: RESIZABLE SIDEBAR =============== */}
-        <Resizable
-          mode="layout" // behaves like a flex item, not floating
-          initialWidth={260}
-          minWidth={72}
-          maxWidth={420}
-          disabledHandles={{
-            left: true,
-            top: true,
-            bottom: true,
-            "top-left": true,
-            "top-right": true,
-            "bottom-left": true,
-            "bottom-right": true,
-            // right handle stays enabled → resize from right side only
-          }}
-        >
-          <Sidebar>
-            <SidebarHeader>
-              <strong style={{ fontSize: 14 }}>Navigation</strong>
-            </SidebarHeader>
+    <SidebarProvider
+      defaultOpen
+      side="left"
+      collapsible="icon"
+    >
+      {/* ================= SIDEBAR ================= */}
+      <Sidebar>
+        {/* ---------- HEADER ---------- */}
+        <SidebarHeader>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <SidebarTrigger />
+            <strong style={{ fontSize: 14 }}>Rachana UI</strong>
+          </div>
+        </SidebarHeader>
 
-            <SidebarContent>
-              {/* -------- Platform -------- */}
-              <SidebarGroup label="Platform">
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "dashboard"}
-                      onClick={() => setActive("dashboard")}
-                    >
-                      🏠 Dashboard
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+        <SidebarSeparator />
 
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "playground"}
-                      onClick={() => setActive("playground")}
-                    >
-                      🧪 Playground
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+        {/* ---------- CONTENT ---------- */}
+        <SidebarContent>
+          {/* Search */}
+          <div style={{ padding: "0 8px 8px" }}>
+            <SidebarInput placeholder="Search…" />
+          </div>
 
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "models"}
-                      onClick={() => setActive("models")}
-                    >
-                      🤖 Models
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+          {/* ---------- GROUP: WORKSPACE ---------- */}
+          <SidebarGroup defaultOpen>
+            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
 
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "docs"}
-                      onClick={() => setActive("docs")}
-                    >
-                      📚 Documentation
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroup>
+            <SidebarGroupAction
+              title="Add workspace"
+              onClick={() => alert("Add workspace")}
+            >
+              ＋
+            </SidebarGroupAction>
 
-              {/* -------- Projects -------- */}
-              <SidebarGroup label="Projects" defaultOpen={false}>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "design"}
-                      onClick={() => setActive("design")}
-                    >
-                      🎨 Design Engineering
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      active={active === "marketing"}
-                      onClick={() => setActive("marketing")}
-                    >
-                      📢 Sales & Marketing
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroup>
-            </SidebarContent>
-
-            <SidebarFooter>
+            <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
-                    👤 shadcn
-                    <span style={{ opacity: 0.6, marginLeft: 6 }}>
-                      m@example.com
-                    </span>
+                  <SidebarMenuButton
+                    isActive={active === "dashboard"}
+                    onClick={() => setActive("dashboard")}
+                  >
+                    📊 <span className="label">Dashboard</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
 
                 <SidebarMenuItem>
-                  <SidebarMenuButton>🚪 Log out</SidebarMenuButton>
+                  <SidebarMenuButton
+                    isActive={active === "projects"}
+                    onClick={() => setActive("projects")}
+                  >
+                    📁 <span className="label">Projects</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuBadge>12</SidebarMenuBadge>
+                </SidebarMenuItem>
+
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    isActive={active === "tasks"}
+                    onClick={() => setActive("tasks")}
+                  >
+                    ✅ <span className="label">Tasks</span>
+                  </SidebarMenuButton>
+
+                  <SidebarMenuAction
+                    title="Quick add task"
+                    onClick={() => alert("Quick add task")}
+                  >
+                    ＋
+                  </SidebarMenuAction>
                 </SidebarMenuItem>
               </SidebarMenu>
-            </SidebarFooter>
-          </Sidebar>
-        </Resizable>
+            </SidebarGroupContent>
+          </SidebarGroup>
 
-        {/* =============== RIGHT: NAVBAR + MAIN CONTENT =============== */}
+          <SidebarSeparator />
+
+          {/* ---------- GROUP: MANAGEMENT ---------- */}
+          <SidebarGroup>
+            <SidebarGroupLabel>Management</SidebarGroupLabel>
+
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    isActive={active === "team"}
+                    onClick={() => setActive("team")}
+                  >
+                    👥 <span className="label">Team</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    isActive={active === "reports"}
+                    onClick={() => setActive("reports")}
+                  >
+                    📈 <span className="label">Reports</span>
+                  </SidebarMenuButton>
+
+                  {/* ---------- SUB MENU ---------- */}
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        isActive={active === "weekly"}
+                        onClick={() => setActive("weekly")}
+                      >
+                        Weekly
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        isActive={active === "monthly"}
+                        onClick={() => setActive("monthly")}
+                      >
+                        Monthly
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          <SidebarSeparator />
+
+          {/* ---------- GROUP: LOADING ---------- */}
+          <SidebarGroup>
+            <SidebarGroupLabel>Loading</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenuSkeleton />
+              <SidebarMenuSkeleton />
+              <SidebarMenuSkeleton />
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+
+        {/* ---------- FOOTER ---------- */}
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                isActive={active === "settings"}
+                onClick={() => setActive("settings")}
+              >
+                ⚙️ <span className="label">Settings</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                isActive={active === "profile"}
+                onClick={() => setActive("profile")}
+              >
+                👤 <span className="label">Profile</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+      </Sidebar>
+
+      {/* ================= MAIN CONTENT ================= */}
+      <SidebarInset>
         <div
           style={{
-            flex: 1,
+            padding: "var(--space-6)",
             display: "flex",
             flexDirection: "column",
-            minWidth: 0, // allows proper shrinking when sidebar grows
+            gap: "var(--space-4)",
           }}
         >
-          {/* NAVBAR NOW BELONGS TO THE RIGHT COLUMN */}
-          <Navbar>
-            <NavbarSection align="left">
-              <NavbarSidebarToggle />
-              <NavbarBrand title="Rachana UI" subtitle="Design System" />
-            </NavbarSection>
+          <h1 style={{ fontSize: "var(--type-h3)" }}>
+            {active.charAt(0).toUpperCase() + active.slice(1)}
+          </h1>
 
-            <NavbarSection align="right">
-              <NavbarActions>
-                <button style={iconButtonStyle}>🔔</button>
-                <button style={iconButtonStyle}>⚙️</button>
-                <button style={iconButtonStyle}>👤</button>
-              </NavbarActions>
-            </NavbarSection>
-          </Navbar>
+          <p style={{ maxWidth: 640, color: "var(--text-secondary)" }}>
+            This demo shows your custom sidebar system with:
+            resize, collapsible groups, mobile off-canvas, submenu,
+            keyboard shortcut, and layout-safe content shifting.
+          </p>
 
-          {/* MAIN CONTENT */}
-          <main
+          <div
             style={{
-              flex: 1,
-              padding: 40,
-              background: "var(--background)",
+              height: 220,
+              borderRadius: "var(--radius-lg)",
+              background: "var(--color-neutral-100)",
+              boxShadow: "var(--shadow-1)",
             }}
-          >
-            <h1>{activeLabel(active)}</h1>
-            <p style={{ maxWidth: 600, color: "var(--text-secondary)" }}>
-              Drag the right edge of the sidebar to resize it.  
-              The navbar and content area shrink and grow with the sidebar,
-              like shadcn’s app shell.
-            </p>
-          </main>
+          />
         </div>
-      </div>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
-
-/* ================= Helpers ================= */
-
-function activeLabel(key: string) {
-  return key.charAt(0).toUpperCase() + key.slice(1);
-}
-
-const iconButtonStyle: CSSProperties = {
-  border: "none",
-  background: "transparent",
-  fontSize: 18,
-  cursor: "pointer",
-  padding: 6,
-};
