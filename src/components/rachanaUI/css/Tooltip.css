@@ -1,0 +1,129 @@
+/* ============================================================================
+   Tooltip.css - Tooltip Component Styles (token-driven)
+   ============================================================================ */
+
+@import "./BrandSetting.css";
+
+/* Root helper (inline wrapper) */
+.tooltip-root {
+  display: inline-flex;
+  position: relative;
+}
+
+/* Content (portal) */
+.tooltip-content {
+  position: fixed; /* use fixed so it does not get clipped by parents */
+  z-index: var(--z-tooltip, 1300);
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-0);
+  padding: calc(var(--space-2, 6px)) calc(var(--space-3, 8px));
+  font-size: var(--type-caption, 12px);
+  line-height: 16px;
+  border-radius: var(--radius-sm, 8px);
+  box-shadow: var(--shadow-2);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--motion-fast, 120ms) var(--motion-ease-std, cubic-bezier(.2,.8,.2,1)),
+    transform var(--motion-fast, 120ms) var(--motion-ease-std, cubic-bezier(.2,.8,.2,1));
+  max-width: 240px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* inner wrapper for text */
+.tooltip-inner {
+  display: inline-block;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* visible state (we set instantly since rendering is controlled by React) */
+.tooltip-content[data-visible="true"],
+.tooltip-content.show,
+.tooltip-content[role="tooltip"] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Align helpers (center / start / end for left/right offsets) */
+.tooltip-align-center { /* default - no-op */ }
+.tooltip-align-start { justify-content: flex-start; }
+.tooltip-align-end { justify-content: flex-end; }
+
+/* Arrow */
+.tooltip-arrow {
+  width: 10px;
+  height: 10px;
+  background: var(--color-neutral-900);
+  transform: rotate(45deg);
+  position: absolute;
+  box-shadow: var(--shadow-2);
+}
+
+/* Placements: we position near mouse/trigger by using small offsets;
+   precise pixel-perfect collision detection is out of scope for this CSS-only
+   solution — the JS positions the tooltip near the trigger using getBoundingClientRect
+   but for simplicity we provide sensible defaults that will look correct for
+   common cases (top/bottom/left/right). */
+
+/* Top */
+.tooltip-top {
+  transform-origin: bottom center;
+}
+.tooltip-top .tooltip-arrow {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Bottom */
+.tooltip-bottom {
+  transform-origin: top center;
+}
+.tooltip-bottom .tooltip-arrow {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Left */
+.tooltip-left {
+  transform-origin: right center;
+}
+.tooltip-left .tooltip-arrow {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Right */
+.tooltip-right {
+  transform-origin: left center;
+}
+.tooltip-right .tooltip-arrow {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-content {
+    transition: none;
+  }
+}
+
+/* Small accessibility helper: ensure text contrast and size */
+.tooltip-content,
+.tooltip-content .tooltip-inner {
+  color: var(--color-neutral-0);
+  font-family: var(--font-family, Inter, system-ui, -apple-system);
+}
+
+/* Small responsive tweak: reduce max width on small devices */
+@media (max-width: 420px) {
+  .tooltip-content { max-width: 90vw; }
+}

@@ -15,7 +15,7 @@ import SidebarDemo from "./demos/SidebarDemo";
 import SheetDemo from "./demos/SheetDemo";
 import DrawerDemo from "./demos/DrawerDemo";
 import ToastDemo from "./demos/ToastDemo"; // ✅ NEW
-
+import TooltipDemo from "./demos/TooltipDemo";
 type Demo =
   | "sidebar"
   | "avatar"
@@ -28,7 +28,8 @@ type Demo =
   | "skeleton"
   | "sheet"
   | "drawer"
-  | "toast"; // ✅ NEW
+  | "toast"
+  | "tooltip" // ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -123,7 +124,13 @@ export default function App() {
           <ToastDemo />
         </Box>
       )}
+         {activeDemo === "tooltip" && ( // ✅ NEW
+        <Box>
+          <TooltipDemo />
+        </Box>
+      )}
     </div>
+    
   );
 }
 
@@ -152,7 +159,8 @@ function DemoSwitcher({
     "skeleton",
     "sheet",
     "drawer",
-    "toast", // ✅ NEW
+    "toast",
+    "tooltip" // ✅ NEW
   ];
 
   return (
