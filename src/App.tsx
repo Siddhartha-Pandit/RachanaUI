@@ -12,6 +12,7 @@ import OverlayDemo from "./demos/OverlayDemo";
 import ResizableDemo from "./demos/ResizableDemo";
 import SkeletonDemo from "./demos/SkeletonDemo";
 import SidebarDemo from "./demos/SidebarDemo";
+import SheetDemo from "./demos/SheetDemo"; // ✅ NEW
 
 type Demo =
   | "sidebar"
@@ -22,7 +23,8 @@ type Demo =
   | "draggable"
   | "overlay"
   | "resizable"
-  | "skeleton";
+  | "skeleton"
+  | "sheet"; // ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -52,14 +54,59 @@ export default function App() {
     >
       <DemoSwitcher value={activeDemo} onChange={setActiveDemo} />
 
-      <Box><AvatarDemo /></Box>
-      <Box><BadgeDemo /></Box>
-      <Box><ButtonDemo /></Box>
-      <Box><DividerDemo /></Box>
-      <Box><DraggableDemo /></Box>
-      <Box><OverlayDemo /></Box>
-      <Box><ResizableDemo /></Box>
-      <Box><SkeletonDemo /></Box>
+      {activeDemo === "avatar" && (
+        <Box>
+          <AvatarDemo />
+        </Box>
+      )}
+
+      {activeDemo === "badge" && (
+        <Box>
+          <BadgeDemo />
+        </Box>
+      )}
+
+      {activeDemo === "button" && (
+        <Box>
+          <ButtonDemo />
+        </Box>
+      )}
+
+      {activeDemo === "divider" && (
+        <Box>
+          <DividerDemo />
+        </Box>
+      )}
+
+      {activeDemo === "draggable" && (
+        <Box>
+          <DraggableDemo />
+        </Box>
+      )}
+
+      {activeDemo === "overlay" && (
+        <Box>
+          <OverlayDemo />
+        </Box>
+      )}
+
+      {activeDemo === "resizable" && (
+        <Box>
+          <ResizableDemo />
+        </Box>
+      )}
+
+      {activeDemo === "skeleton" && (
+        <Box>
+          <SkeletonDemo />
+        </Box>
+      )}
+
+      {activeDemo === "sheet" && ( // ✅ NEW
+        <Box>
+          <SheetDemo />
+        </Box>
+      )}
     </div>
   );
 }
@@ -87,6 +134,7 @@ function DemoSwitcher({
     "overlay",
     "resizable",
     "skeleton",
+    "sheet", // ✅ NEW
   ];
 
   return (

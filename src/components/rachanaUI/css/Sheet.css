@@ -1,0 +1,208 @@
+/* ============================================================================
+   Sheet.css — Resizable Sheet Component
+   ============================================================================ */
+
+@import "./BrandSetting.css";
+
+/* ---------------------------------------------------------------------------
+   PORTAL
+--------------------------------------------------------------------------- */
+.sheet-portal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sheet, 1100);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   BACKDROP
+--------------------------------------------------------------------------- */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay-60);
+  opacity: 0;
+  transition: opacity var(--motion-medium);
+  pointer-events: none;
+}
+
+.sheet-portal--open .sheet-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   SHEET BASE
+--------------------------------------------------------------------------- */
+.sheet {
+  position: fixed;
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-3);
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  pointer-events: auto;
+
+  transition: transform var(--motion-medium);
+}
+
+/* ---------------------------------------------------------------------------
+   PLACEMENTS
+--------------------------------------------------------------------------- */
+
+/* RIGHT */
+.sheet--right {
+  top: 0;
+  right: 0;
+  height: 100vh;
+  transform: translateX(100%);
+  border-left: 1px solid var(--border);
+}
+
+/* LEFT */
+.sheet--left {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transform: translateX(-100%);
+  border-right: 1px solid var(--border);
+}
+
+/* BOTTOM */
+.sheet--bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* TOP */
+.sheet--top {
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+}
+
+/* OPEN */
+.sheet-portal--open .sheet {
+  transform: translate(0, 0);
+}
+
+/* ---------------------------------------------------------------------------
+   SIZES (DEFAULTS)
+--------------------------------------------------------------------------- */
+.sheet--sm { width: 320px; }
+.sheet--md { width: 360px; }
+.sheet--lg { width: 420px; }
+.sheet--xl { width: 560px; }
+
+.sheet--half { height: 50vh; }
+.sheet--full { height: 100vh; }
+
+/* ---------------------------------------------------------------------------
+   RESIZE HANDLE
+--------------------------------------------------------------------------- */
+.sheet__resize {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+}
+
+.sheet--right .sheet__resize {
+  left: 0;
+}
+
+.sheet--left .sheet__resize {
+  right: 0;
+}
+
+.sheet--bottom .sheet__resize {
+  top: 0;
+  height: 6px;
+  width: 100%;
+  cursor: row-resize;
+}
+
+/* ---------------------------------------------------------------------------
+   HEADER / BODY / FOOTER
+--------------------------------------------------------------------------- */
+.sheet__header {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.sheet__title {
+  font-size: var(--type-h3);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sheet__description {
+  font-size: var(--type-body-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+
+.sheet__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+.sheet__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
+/* ---------------------------------------------------------------------------
+   CLOSE
+--------------------------------------------------------------------------- */
+.sheet__close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.sheet__close:hover {
+  color: var(--text-primary);
+}
+
+/* ---------------------------------------------------------------------------
+   MOBILE OVERRIDE
+--------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .sheet--right,
+  .sheet--left {
+    width: 100%;
+    height: 100vh;
+    bottom: 0;
+    top: auto;
+    transform: translateY(100%);
+  }
+
+  .sheet-portal--open .sheet--right,
+  .sheet-portal--open .sheet--left {
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheet-backdrop {
+    transition: none;
+  }
+}
