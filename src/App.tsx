@@ -21,6 +21,7 @@ import InputDemo from "./demos/InputDemo";
 import OTPInputDemo from "./demos/OTPInputDemo";
 import NavbarDemo from "./demos/NavbarDemo";
 import SliderDemo from "./demos/SliderDemo";
+import CardDemo from "./demos/CardDemo";
 type Demo =
   | "sidebar"
   | "avatar"
@@ -39,7 +40,8 @@ type Demo =
   | "input"
   | "otp-input"
   | "navbar"
-  | "slider" ; // ✅ NEW
+  | "slider" 
+  | "card" ; // ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -163,6 +165,11 @@ export default function App() {
           <SliderDemo />
         </Box>
       )}
+       {activeDemo === "card" && ( // ✅ NEW
+        <Box>
+          <CardDemo />
+        </Box>
+      )}
     </div>
     
   );
@@ -199,7 +206,8 @@ function DemoSwitcher({
     "input", // ✅ NEW
     "otp-input", // ✅ NEW
     "navbar", // ✅ NEW
-    "slider" // ✅ NEW
+    "slider",
+    "card", // ✅ NEW
   ];
 
   return (
