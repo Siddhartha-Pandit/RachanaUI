@@ -1,0 +1,249 @@
+/* ============================================================================ */
+/*  OTP INPUT COMPONENT — DESIGN SYSTEM COMPLIANT                              */
+/*  Requires: BrandSetting.css tokens                                           */
+/*  Category: Form Controls                                                     */
+/* ============================================================================ */
+
+/* --------------------------------------------------------------------------- */
+/* FIELD CONTAINER                                                              */
+/* --------------------------------------------------------------------------- */
+.otp-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* --------------------------------------------------------------------------- */
+/* LABEL                                                                        */
+/* --------------------------------------------------------------------------- */
+.otp-label {
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------- */
+/* OTP GROUP (CELL CONTAINER)                                                   */
+/* --------------------------------------------------------------------------- */
+.otp-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------- */
+/* OTP CELL (SINGLE DIGIT INPUT)                                                */
+/* --------------------------------------------------------------------------- */
+.otp-cell {
+  /* Box Model */
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  
+  /* Appearance */
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--color-surface-elevated);
+  
+  /* Typography */
+  text-align: center;
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-system);
+  color: var(--text-primary);
+  line-height: 1;
+  
+  /* Interaction */
+  cursor: text;
+  outline: none;
+  transition: 
+    border-color var(--motion-fast),
+    box-shadow var(--motion-fast),
+    background-color var(--motion-fast);
+  
+  /* Remove default input styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* Remove spinner buttons for number inputs */
+.otp-cell::-webkit-outer-spin-button,
+.otp-cell::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------- */
+/* HOVER STATE                                                                  */
+/* --------------------------------------------------------------------------- */
+.otp-cell:hover:not(:disabled):not(.otp-cell--error) {
+  border-color: var(--color-neutral-300);
+}
+
+/* --------------------------------------------------------------------------- */
+/* FOCUS STATE (CRITICAL)                                                       */
+/* --------------------------------------------------------------------------- */
+.otp-cell:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(35, 113, 231, 0.3);
+}
+
+:root.dark .otp-cell:focus {
+  box-shadow: 0 0 0 3px rgba(35, 113, 231, 0.4);
+}
+
+/* --------------------------------------------------------------------------- */
+/* ERROR STATE                                                                  */
+/* --------------------------------------------------------------------------- */
+.otp-cell--error {
+  border-color: var(--color-error-500);
+  animation: shake 240ms ease-in-out;
+}
+
+.otp-cell--error:focus {
+  border-color: var(--color-error-500);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* --------------------------------------------------------------------------- */
+/* DISABLED STATE                                                               */
+/* --------------------------------------------------------------------------- */
+.otp-cell--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-neutral-50);
+}
+
+:root.dark .otp-cell--disabled {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --------------------------------------------------------------------------- */
+/* HELPER TEXT                                                                  */
+/* --------------------------------------------------------------------------- */
+.otp-helper-text {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------- */
+/* ERROR TEXT                                                                   */
+/* --------------------------------------------------------------------------- */
+.otp-error-text {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-error-500);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------- */
+/* RESPONSIVE BREAKPOINTS                                                       */
+/* --------------------------------------------------------------------------- */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .otp-cell {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+  
+  .otp-field {
+    max-width: 360px;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  .otp-cell {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .otp-group {
+    gap: var(--space-1);
+  }
+  
+  .otp-field {
+    max-width: 100%;
+  }
+  
+  .otp-label {
+    font-size: 13px;
+  }
+}
+
+/* Very small mobile (< 380px) - Extra compact */
+@media (max-width: 379px) {
+  .otp-cell {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  
+  .otp-group {
+    gap: 4px;
+  }
+}
+
+/* --------------------------------------------------------------------------- */
+/* ACCESSIBILITY ENHANCEMENTS                                                   */
+/* --------------------------------------------------------------------------- */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .otp-cell {
+    border-width: 2px;
+  }
+  
+  .otp-cell:focus {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .otp-cell {
+    transition: none;
+  }
+  
+  .otp-cell--error {
+    animation: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.otp-cell:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------- */
+/* PRINT STYLES                                                                 */
+/* --------------------------------------------------------------------------- */
+@media print {
+  .otp-cell {
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+  }
+}

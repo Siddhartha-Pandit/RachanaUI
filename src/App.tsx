@@ -16,7 +16,9 @@ import SheetDemo from "./demos/SheetDemo";
 import DrawerDemo from "./demos/DrawerDemo";
 import ToastDemo from "./demos/ToastDemo"; // ✅ NEW
 import TooltipDemo from "./demos/TooltipDemo";
-import TableDemo from "./demos/TableDemo"; // ✅ NEW
+import TableDemo from "./demos/TableDemo"; 
+import InputDemo from "./demos/InputDemo";
+import OTPInputDemo from "./demos/OTPInputDemo";
 type Demo =
   | "sidebar"
   | "avatar"
@@ -31,7 +33,9 @@ type Demo =
   | "drawer"
   | "toast"
   | "tooltip"
-  | "table" // ✅ NEW
+  | "table" 
+  | "input"
+  | "otp-input"// ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -136,6 +140,16 @@ export default function App() {
           <TableDemo />
         </Box>
       )}
+        {activeDemo === "input" && ( // ✅ NEW
+        <Box>
+          <InputDemo />
+        </Box>
+      )}
+        {activeDemo === "otp-input" && ( // ✅ NEW
+        <Box>
+          <OTPInputDemo />
+        </Box>
+      )}
     </div>
     
   );
@@ -168,7 +182,9 @@ function DemoSwitcher({
     "drawer",
     "toast",
     "tooltip",
-    "table" // ✅ NEW
+    "table",
+    "input", // ✅ NEW
+    "otp-input" // ✅ NEW
   ];
 
   return (
