@@ -1,0 +1,238 @@
+/* ============================================================================
+   TABLE — BASE WRAPPER
+============================================================================ */
+.table-wrapper {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-elevated);
+  overflow: hidden;
+}
+
+/* Scroll container */
+.table-scroll {
+  width: 100%;
+  max-height: 60vh;
+  overflow: auto;
+  position: relative;
+}
+
+/* ============================================================================
+   TABLE BASE
+============================================================================ */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--color-surface-elevated);
+  min-width: 640px; /* enables horizontal scroll on small screens */
+}
+
+/* ============================================================================
+   TABLE HEADER
+============================================================================ */
+.table-header th {
+  position: relative;
+  background: var(--color-neutral-50);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.875rem;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* Sticky header */
+.table-header.sticky th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--shadow-1);
+}
+
+/* ============================================================================
+   TABLE ROWS
+============================================================================ */
+.table-row {
+  height: 40px;
+  transition: background var(--motion-fast);
+}
+
+/* Hover */
+.table-row:hover {
+  background: var(--color-neutral-50);
+}
+
+/* Selected — FULL ROW HIGHLIGHT */
+.table-row[data-selected="true"] {
+  background: var(--color-primary-50);
+}
+
+/* Frozen row (pinned) */
+.table-row[data-frozen="true"] {
+  position: sticky;
+  z-index: 15;
+  background: var(--color-primary-50);
+  box-shadow: inset 0 -1px 0 var(--border);
+}
+
+/* ============================================================================
+   TABLE CELLS
+============================================================================ */
+.table-cell,
+.table-head {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: inherit; /* IMPORTANT: inherit row background */
+  white-space: nowrap;
+}
+
+/* ============================================================================
+   FROZEN (STICKY) COLUMNS
+============================================================================ */
+.table-cell.frozen,
+.table-head.frozen {
+  position: sticky;
+  left: 0;
+  z-index: 25;
+  background: inherit;
+  box-shadow: 1px 0 0 var(--border);
+}
+
+/* Checkbox column width */
+.table-cell.frozen,
+.table-head.frozen {
+  width: 44px;
+}
+
+/* ============================================================================
+   CHECKBOX
+============================================================================ */
+.table-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-primary-500);
+  background: var(--color-primary-500);
+  color: var(--text-on-primary);
+  font-size: 12px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--motion-fast),
+              border var(--motion-fast),
+              transform var(--motion-fast);
+}
+
+.table-checkbox:hover {
+  background: var(--color-primary-600);
+}
+
+.table-checkbox:active {
+  transform: scale(0.96);
+}
+
+/* ============================================================================
+   TABLE FOOTER (OPTIONAL)
+============================================================================ */
+.table-footer td {
+  padding: var(--space-4);
+  background: var(--color-neutral-50);
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================================================
+   SCROLLBARS
+============================================================================ */
+.table-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: var(--radius-pill);
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============================================================================
+   DARK MODE ADJUSTMENTS (AUTOMATIC VIA TOKENS)
+============================================================================ */
+:root.dark .table-header th {
+  background: var(--color-neutral-800);
+}
+
+:root.dark .table-row:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+:root.dark .table-row[data-selected="true"],
+:root.dark .table-row[data-frozen="true"] {
+  background: rgba(35,113,231,0.18);
+}
+
+/* ============================================================================
+   RESPONSIVE — TABLET
+============================================================================ */
+@media (max-width: 1024px) {
+  .table {
+    min-width: 560px;
+  }
+
+  .table-cell,
+  .table-head {
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE — MOBILE (STACK MODE)
+============================================================================ */
+@media (max-width: 640px) {
+  .table {
+    min-width: 100%;
+    border-collapse: separate;
+  }
+
+  .table-header {
+    display: none; /* hide header on mobile */
+  }
+
+  .table-row {
+    display: block;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .table-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border: none;
+    font-size: 0.875rem;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    margin-right: var(--space-3);
+  }
+
+  /* Disable sticky on mobile */
+  .table-cell.frozen,
+  .table-head.frozen,
+  .table-row[data-frozen="true"] {
+    position: static;
+    box-shadow: none;
+  }
+}

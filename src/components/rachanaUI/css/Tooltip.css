@@ -49,7 +49,7 @@
 }
 
 /* Align helpers (center / start / end for left/right offsets) */
-.tooltip-align-center { /* default - no-op */ }
+
 .tooltip-align-start { justify-content: flex-start; }
 .tooltip-align-end { justify-content: flex-end; }
 
