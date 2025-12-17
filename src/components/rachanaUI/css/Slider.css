@@ -1,0 +1,101 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Base Track Styling */
+.slider-track-bg {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-pill);
+  z-index: 1;
+}
+
+/* Active Highlight Range */
+.slider-range-highlight {
+  position: absolute;
+  height: 4px;
+  background-color: var(--color-primary-500);
+  border-radius: var(--radius-pill);
+  z-index: 2;
+  /* Logical coloring between thumbs or from start */
+  left: var(--min-percent, 0%);
+  right: calc(100% - var(--max-percent, 100%));
+}
+
+/* Hide range highlight logic if single thumb */
+.slider-container:not(:has(.thumb--right)) .slider-range-highlight {
+  left: 0;
+  right: calc(100% - var(--min-percent));
+}
+
+/* Reset Native Input */
+.thumb {
+  pointer-events: none; /* Let clicks pass to track */
+  position: absolute;
+  height: 0;
+  width: 100%;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  z-index: 4;
+  background: none;
+}
+
+/* Ensure only thumb handle is clickable */
+.thumb::-webkit-slider-thumb {
+  pointer-events: all;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: grab;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all var(--motion-fast);
+  box-shadow: var(--shadow-1);
+}
+
+/* Interaction States */
+.thumb::-webkit-slider-thumb:hover {
+  background-color: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+  transform: scale(1.1);
+}
+
+.thumb:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 4px var(--color-primary-50);
+}
+
+.thumb:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--color-primary-200);
+}
+
+/* Handle overlapping thumbs z-index */
+.thumb--left { z-index: 5; }
+.thumb--right { z-index: 4; }
+
+/* Disabled State */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.disabled .thumb::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+
+/* Vertical Orientation Support */
+.slider-container.vertical {
+  width: 24px;
+  height: 120px;
+  transform: rotate(-90deg); /* Simplest way to maintain logic */
+}
