@@ -1,0 +1,251 @@
+/* ========================================================================== */
+/* NAVBAR COMPONENT STYLES                                                   */
+/* Strictly uses brandsetting.css tokens                                     */
+/* ========================================================================== */
+
+/* --- 1. Base Container --- */
+.navbar {
+  width: 100%;
+  height: 56px; /* Desktop Height */
+  background: var(--color-surface-elevated);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--motion-medium), height var(--motion-fast);
+  z-index: 100;
+}
+
+.navbar--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.navbar--scrolled {
+  box-shadow: var(--shadow-1);
+}
+
+.navbar-container {
+  max-width: 1400px; /* SaaS Scale max-width */
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: grid;
+  /* 3-Column Grid for perfect centering */
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* --- 2. Slots --- */
+.navbar-start {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 100%;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.navbar-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+/* --- 3. Navigation Items --- */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--type-body-md);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--motion-fast);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.nav-item:hover {
+  background: var(--color-neutral-100);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Dark mode adjustment for active state */
+:global(.dark) .nav-item.active {
+  background: rgba(31, 99, 203, 0.2); /* color-primary-600 with opacity */
+  color: var(--color-primary-300);
+}
+
+/* --- 4. Dropdown / Menu --- */
+.nav-menu-wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  padding-top: var(--space-2); /* Safe gap */
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--motion-fast);
+  pointer-events: none;
+}
+
+.nav-dropdown.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.nav-dropdown-card {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  padding: var(--space-2);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chevron {
+  transition: transform var(--motion-fast);
+  color: var(--text-secondary);
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* --- 5. Utilities --- */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--motion-fast);
+}
+
+.icon-btn:hover {
+  background: var(--color-neutral-100);
+  color: var(--text-primary);
+}
+
+/* --- 6. Mobile & Responsive Logic --- */
+
+/* Default: Hide mobile elements on desktop */
+.mobile-only { display: none; }
+
+/* Mobile Drawer (Hidden by default) */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-3);
+  z-index: 2000;
+  transform: translateX(-100%);
+  transition: transform var(--motion-medium);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay-60);
+  z-index: 1999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-medium);
+  backdrop-filter: blur(2px);
+}
+
+.mobile-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer-header {
+  height: 52px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+}
+
+.mobile-drawer-content {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* --- RESPONSIVE BREAKPOINT (Tablet/Mobile < 1024px) --- */
+@media (max-width: 1024px) {
+  .navbar {
+    height: 52px; /* Spec: Mobile height */
+  }
+  
+  .navbar-container {
+    padding: 0 var(--space-3);
+    /* Mobile Layout: Hamburger | Logo | Actions */
+    grid-template-columns: min-content 1fr min-content; 
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+  
+  /* Buttons smaller on mobile */
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Ensure Logo is centered or adjusted as per preference */
+  .navbar-start {
+    gap: var(--space-2);
+  }
+}

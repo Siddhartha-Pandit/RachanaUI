@@ -19,6 +19,7 @@ import TooltipDemo from "./demos/TooltipDemo";
 import TableDemo from "./demos/TableDemo"; 
 import InputDemo from "./demos/InputDemo";
 import OTPInputDemo from "./demos/OTPInputDemo";
+import NavbarDemo from "./demos/NavbarDemo";
 type Demo =
   | "sidebar"
   | "avatar"
@@ -35,7 +36,8 @@ type Demo =
   | "tooltip"
   | "table" 
   | "input"
-  | "otp-input"// ✅ NEW
+  | "otp-input"
+  | "navbar"; // ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -149,6 +151,10 @@ export default function App() {
         <Box>
           <OTPInputDemo />
         </Box>
+      )}      {activeDemo === "navbar" && ( // ✅ NEW
+        <Box>
+          <NavbarDemo />
+        </Box>
       )}
     </div>
     
@@ -184,7 +190,8 @@ function DemoSwitcher({
     "tooltip",
     "table",
     "input", // ✅ NEW
-    "otp-input" // ✅ NEW
+    "otp-input", // ✅ NEW
+    "navbar" // ✅ NEW
   ];
 
   return (
