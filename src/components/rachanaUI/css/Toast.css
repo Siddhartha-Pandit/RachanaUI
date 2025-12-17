@@ -1,0 +1,128 @@
+/* ============================================================================
+   Toast.css — Design System Toast (Sonner-style)
+   ============================================================================ */
+
+@import "./BrandSetting.css";
+
+/* ---------------------------------------------------------------------------
+   TOASTER CONTAINER
+--------------------------------------------------------------------------- */
+.toaster {
+  position: fixed;
+  z-index: var(--z-toast, 1200);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  pointer-events: none;
+}
+
+.toaster.top-right { top: 0; right: 0; }
+.toaster.top-left { top: 0; left: 0; }
+.toaster.bottom-right { bottom: 0; right: 0; }
+.toaster.bottom-left { bottom: 0; left: 0; }
+.toaster.top-center { top: 0; left: 50%; transform: translateX(-50%); }
+.toaster.bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); }
+
+/* ---------------------------------------------------------------------------
+   TOAST
+--------------------------------------------------------------------------- */
+.toast {
+  pointer-events: auto;
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  background: var(--color-surface-elevated);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  min-width: 320px;
+  max-width: 520px;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--motion-medium),
+    transform var(--motion-medium);
+}
+
+.toast[data-state="open"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast[data-state="closed"] {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ---------------------------------------------------------------------------
+   ICON
+--------------------------------------------------------------------------- */
+.toast-icon {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   CONTENT
+--------------------------------------------------------------------------- */
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+}
+
+.toast-title {
+  font-size: var(--type-body-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.toast-description {
+  font-size: var(--type-body-sm);
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   ACTIONS
+--------------------------------------------------------------------------- */
+.toast-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.toast-action {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--type-body-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-500);
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   VARIANTS
+--------------------------------------------------------------------------- */
+.toast.success .toast-icon { color: var(--color-success-500); }
+.toast.error .toast-icon { color: var(--color-error-500); }
+.toast.warning .toast-icon { color: var(--color-warning-500); }
+.toast.info .toast-icon { color: var(--color-primary-500); }
+
+/* ---------------------------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

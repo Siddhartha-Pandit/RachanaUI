@@ -13,7 +13,8 @@ import ResizableDemo from "./demos/ResizableDemo";
 import SkeletonDemo from "./demos/SkeletonDemo";
 import SidebarDemo from "./demos/SidebarDemo";
 import SheetDemo from "./demos/SheetDemo";
-import DrawerDemo from "./demos/DrawerDemo"; // ✅ NEW
+import DrawerDemo from "./demos/DrawerDemo";
+import ToastDemo from "./demos/ToastDemo"; // ✅ NEW
 
 type Demo =
   | "sidebar"
@@ -26,7 +27,8 @@ type Demo =
   | "resizable"
   | "skeleton"
   | "sheet"
-  | "drawer"; // ✅ NEW
+  | "drawer"
+  | "toast"; // ✅ NEW
 
 export default function App() {
   const [activeDemo, setActiveDemo] = useState<Demo>("sidebar");
@@ -110,9 +112,15 @@ export default function App() {
         </Box>
       )}
 
-      {activeDemo === "drawer" && ( // ✅ NEW
+      {activeDemo === "drawer" && (
         <Box>
           <DrawerDemo />
+        </Box>
+      )}
+
+      {activeDemo === "toast" && ( // ✅ NEW
+        <Box>
+          <ToastDemo />
         </Box>
       )}
     </div>
@@ -143,7 +151,8 @@ function DemoSwitcher({
     "resizable",
     "skeleton",
     "sheet",
-    "drawer", // ✅ NEW
+    "drawer",
+    "toast", // ✅ NEW
   ];
 
   return (
