@@ -12,7 +12,6 @@ type NativeInputProps = Omit<
   "size" | "prefix" | "suffix"
 >;
 
-
 export type InputSize = "sm" | "md" | "lg";
 
 export type InputProps = {
@@ -23,11 +22,16 @@ export type InputProps = {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   fullWidth?: boolean;
+
+  /** REGEX VALIDATION */
+  regex?: string;
+  regexError?: string;
 } & NativeInputProps;
 
 /* ============================================================================
    BASE INPUT
 ============================================================================ */
+
 export function Input({
   label,
   helper,
@@ -39,17 +43,68 @@ export function Input({
   disabled,
   readOnly,
   id,
+  value,
+  regex,
+  regexError,
+  onChange,
   ...props
 }: InputProps) {
   const inputId = id ?? React.useId();
-  const helperId = helper ? `${inputId}-helper` : undefined;
-  const errorId = error ? `${inputId}-error` : undefined;
 
-  const describedBy = error
+  /* ------------------------------------------------------------------------
+     REGEX SETUP
+  ------------------------------------------------------------------------ */
+  const pattern = React.useMemo(() => {
+    if (!regex) return null;
+    try {
+      return new RegExp(regex);
+    } catch {
+      console.warn("Invalid regex provided to Input:", regex);
+      return null;
+    }
+  }, [regex]);
+
+  const [internalRegexError, setInternalRegexError] =
+    React.useState<string | null>(null);
+
+  /* ------------------------------------------------------------------------
+     VALIDATION
+  ------------------------------------------------------------------------ */
+  const validate = React.useCallback(
+    (val?: string) => {
+      if (!pattern || disabled || readOnly) return null;
+      if (!val) return null;
+      return pattern.test(val)
+        ? null
+        : regexError || "Invalid value";
+    },
+    [pattern, regexError, disabled, readOnly]
+  );
+
+  // ✅ Re-validate whenever VALUE changes
+  React.useEffect(() => {
+    if (typeof value === "string") {
+      setInternalRegexError(validate(value));
+    }
+  }, [value, validate]);
+
+  const showError = error || internalRegexError;
+
+  const helperId = helper ? `${inputId}-helper` : undefined;
+  const errorId = showError ? `${inputId}-error` : undefined;
+
+  const describedBy = showError
     ? errorId
     : helper
     ? helperId
     : undefined;
+
+  /* ------------------------------------------------------------------------
+     HANDLERS
+  ------------------------------------------------------------------------ */
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e);
+  };
 
   return (
     <div className={`field ${fullWidth ? "full-width" : ""}`}>
@@ -63,7 +118,7 @@ export function Input({
         className={[
           "input-wrapper",
           `size-${size}`,
-          error && "error",
+          showError && "error",
           disabled && "disabled",
           readOnly && "readonly"
         ]
@@ -72,28 +127,31 @@ export function Input({
       >
         {prefix && <span className="input-prefix">{prefix}</span>}
 
+        {/* 🔑 FIXED INPUT (props order matters) */}
         <input
+          {...props}
           id={inputId}
           className="input"
           disabled={disabled}
           readOnly={readOnly}
-          aria-invalid={!!error}
+          value={value}
+          aria-invalid={!!showError}
           aria-describedby={describedBy}
-          {...props}
+          onChange={handleChange}
         />
 
         {suffix && <span className="input-suffix">{suffix}</span>}
       </div>
 
-      {!error && helper && (
+      {!showError && helper && (
         <div id={helperId} className="helper-text">
           {helper}
         </div>
       )}
 
-      {error && (
+      {showError && (
         <div id={errorId} className="error-text" role="alert">
-          {error}
+          {error || internalRegexError}
         </div>
       )}
     </div>
@@ -102,9 +160,6 @@ export function Input({
 
 /* ============================================================================
    PHONE INPUT
-============================================================================ */
-/* ============================================================================
-   PHONE INPUT (FULLY PROP-DRIVEN)
 ============================================================================ */
 
 export type Country = {
@@ -122,17 +177,13 @@ export type PhoneInputProps = {
   fullWidth?: boolean;
   disabled?: boolean;
 
-  /** 🔑 REQUIRED DATA */
   countries: Country[];
 
-  /** 🔁 CONTROLLED COUNTRY */
   country?: Country;
   onCountryChange?: (country: Country) => void;
 
-  /** 🔁 UNCONTROLLED COUNTRY */
   defaultCountry?: Country;
 
-  /** PHONE VALUE */
   value?: string;
   onChange?: (value: string) => void;
 };
@@ -153,9 +204,6 @@ export function PhoneInput({
   value,
   onChange
 }: PhoneInputProps) {
-  /* ------------------------------------------------------------------------
-     COUNTRY STATE (CONTROLLED / UNCONTROLLED)
-  ------------------------------------------------------------------------ */
   const isControlled = controlledCountry !== undefined;
 
   const [internalCountry, setInternalCountry] = React.useState<Country | null>(
@@ -171,7 +219,7 @@ export function PhoneInput({
 
   const [open, setOpen] = React.useState(false);
 
-  if (!country) return null; // safety guard
+  if (!country) return null;
 
   return (
     <div className={`field ${fullWidth ? "full-width" : ""}`}>
@@ -236,9 +284,7 @@ export function PhoneInput({
         />
       </div>
 
-      {!error && helper && (
-        <div className="helper-text">{helper}</div>
-      )}
+      {!error && helper && <div className="helper-text">{helper}</div>}
 
       {error && (
         <div className="error-text" role="alert">
@@ -248,4 +294,3 @@ export function PhoneInput({
     </div>
   );
 }
-

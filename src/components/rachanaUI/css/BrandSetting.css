@@ -16,7 +16,7 @@
   --color-primary-200: #91b8f3;
   --color-primary-300: #5a94ed;
   --color-primary-400: #3d82ea;
-  --color-primary-500: #2371e7;
+  --color-primary-500: #2371e7;/*brand color*/
   --color-primary-600: #1f63cb;
   --color-primary-700: #1a55ad;
   --color-primary-800: #133e7f;
@@ -33,7 +33,7 @@
   --color-neutral-600: #343146;
   --color-neutral-700: #201d2f;
   --color-neutral-800: #151224;
-  --color-neutral-900: #030014;
+  --color-neutral-900: #030014;/*brand color*/
 
   /* FEEDBACK */
   --color-success-500: #16a34a;

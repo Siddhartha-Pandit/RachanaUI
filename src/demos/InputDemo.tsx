@@ -28,6 +28,7 @@ const COUNTRIES: Country[] = [
 export default function InputDemo() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const [phone, setPhone] = React.useState("");
   const [country, setCountry] = React.useState<Country>(COUNTRIES[0]);
@@ -121,11 +122,17 @@ export default function InputDemo() {
           helper="Must be at least 4 characters"
         />
 
+        {/* ✅ PASSWORD WITH REGEX VALIDATION */}
         <Input
           label="Password"
           type="password"
           placeholder="••••••••"
-          error="Password is too weak"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$"
+          regexError="Password must be at least 8 characters and include uppercase, lowercase, and a number"
+          helper="Min 8 chars, 1 uppercase, 1 lowercase, 1 number"
+          fullWidth
         />
       </section>
 

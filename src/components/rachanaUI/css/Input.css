@@ -53,12 +53,11 @@
    STATES
 ============================================================================ */
 .input-wrapper:hover:not(.disabled):not(.error) {
-  border-color: var(--color-neutral-200);
+  border-color: var(--color-neutral-900);
 }
 
 .input-wrapper:focus-within:not(.disabled) {
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px rgba(35, 113, 231, 0.3);
+  border-color: var(--color-neutral-900);
 }
 
 .input-wrapper.error {
@@ -84,7 +83,7 @@
 }
 
 .input::placeholder {
-  color: var(--text-muted);
+  color: var(--color-neutral-300);
 }
 
 /* ============================================================================
