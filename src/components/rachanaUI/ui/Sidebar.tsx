@@ -30,7 +30,9 @@ type SidebarContextValue = {
   side: SidebarSide;
   collapsible: SidebarCollapsible;
 };
-
+type SidebarTriggerProps=React.HTMLAttributes<HTMLButtonElement> & {
+  children?:React.ReactNode;
+}
 /* =========================================================
    CONTEXT
 ========================================================= */
@@ -220,11 +222,14 @@ export const SidebarInset = (p: React.HTMLAttributes<HTMLElement>) => {
    TRIGGER
 ========================================================= */
 
-export function SidebarTrigger() {
+export function SidebarTrigger({
+  children,
+  ...props
+}: SidebarTriggerProps) {
   const ctx = useSidebar();
   return (
     <button className="sidebar-trigger" onClick={ctx.toggleSidebar}>
-      ☰
+     {children?? "☰"}
     </button>
   );
 }
