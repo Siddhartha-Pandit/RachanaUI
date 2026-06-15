@@ -54,19 +54,13 @@ function SidebarRoot({
   children,
   defaultCollapsed = false,
   collapsed: controlledCollapsed,
-  onCollapsedChange,
   activeItem,
   onItemClick,
   className = "",
 }: SidebarProps) {
-  const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed);
+  const [internalCollapsed] = useState(defaultCollapsed);
 
   const collapsed = controlledCollapsed ?? internalCollapsed;
-
-  const setCollapsed = (v: boolean) => {
-    setInternalCollapsed(v);
-    onCollapsedChange?.(v);
-  };
 
   return (
     <SidebarContext.Provider value={{ collapsed, activeItem, onItemClick }}>

@@ -1,6 +1,6 @@
 import "./Drawer.css";
-import { useState, useEffect, useRef, createContext, useContext, useCallback } from "react";
-import type { ReactNode, CSSProperties } from "react";
+import { useEffect, useRef, createContext, useContext } from "react";
+import type { ReactNode } from "react";
 import { XIcon } from "../Icons/Icons";
 
 /* ─────────────────────────────────────────────
