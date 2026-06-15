@@ -1,0 +1,258 @@
+.table-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-200) transparent;
+}
+
+.table-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 600px;
+}
+
+/* ── Header ── */
+.table-head {
+  background: var(--neutral-50);
+  color: var(--neutral-400);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--neutral-200);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.table-head-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--neutral-50);
+}
+
+/* Vertical dividers between header cells */
+.table-head+.table-head {
+  border-left: 1px solid var(--neutral-200);
+}
+
+/* No extra border after checkbox — handled by ::after pseudo */
+.table-head-check+.table-head {
+  border-left: none;
+}
+
+/* ── Checkbox column ── */
+.table-head-check,
+.table-cell-check {
+  width: 44px;
+  min-width: 44px;
+  max-width: 44px;
+  padding: 0 !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-head-check {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  background: var(--neutral-50);
+}
+
+.table-cell-check {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: var(--neutral-0);
+  transition: none;
+}
+
+.table-head-check .checkbox,
+.table-cell-check .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Checkbox column right divider */
+.table-head-check::after,
+.table-cell-check::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--neutral-200);
+  pointer-events: none;
+}
+
+/* ── Sticky first DATA column ── */
+.table-first-column {
+  position: sticky;
+  z-index: 5;
+  background: var(--neutral-0);
+  transition: none;
+}
+
+.table-first-column::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 1px;
+  background: var(--neutral-200);
+  pointer-events: none;
+}
+
+thead .table-first-column {
+  background: var(--neutral-50);
+  z-index: 11;
+}
+
+thead .table-head-check::after,
+thead .table-first-column::after {
+  z-index: 13;
+}
+
+/* ── Rows ── */
+.table-row {
+  background: var(--neutral-0);
+}
+
+/* Default sticky cell backgrounds */
+.table-row .table-cell-check,
+.table-row .table-first-column {
+  background: var(--neutral-0);
+  transition: none;
+}
+
+/* Striped */
+.table-row-striped {
+  background: var(--neutral-50);
+}
+
+.table-row-striped .table-cell-check,
+.table-row-striped .table-first-column {
+  background: var(--neutral-50);
+}
+
+/* Hover */
+.table-row-hover:hover {
+  background: var(--brand-50);
+}
+
+.table-row-hover:hover .table-cell-check,
+.table-row-hover:hover .table-first-column {
+  background: var(--brand-50) !important;
+}
+
+/* Selected */
+.table-row-selected {
+  background: var(--brand-50) !important;
+}
+
+.table-row-selected .table-cell-check,
+.table-row-selected .table-first-column {
+  background: var(--brand-50) !important;
+}
+
+.table-row-selected .table-cell {
+  border-bottom-color: var(--brand-400);
+}
+
+/* ── Cells ── */
+.table-cell {
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--neutral-200);
+  color: var(--neutral-700);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+/* Vertical dividers between body cells */
+.table-cell+.table-cell {
+  border-left: 1px solid var(--neutral-200);
+}
+
+/* No extra border after checkbox — handled by ::after pseudo */
+.table-cell-check+.table-cell {
+  border-left: none;
+}
+
+.table-row:last-child .table-cell {
+  border-bottom: none;
+}
+
+/* ── Empty state ── */
+.table-empty {
+  text-align: center;
+  color: var(--neutral-400);
+  font-size: 14px;
+  padding: var(--sp-12) var(--sp-4) !important;
+  white-space: normal;
+}
+
+/* ── Skeleton rows ── */
+.table-skeleton-box {
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg,
+      var(--neutral-200) 25%,
+      var(--neutral-50) 50%,
+      var(--neutral-200) 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* ── Pagination ── */
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--neutral-200);
+  background: var(--neutral-0);
+}
+
+.table-pagination-info {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--neutral-400);
+  white-space: nowrap;
+  margin-right: auto;
+}

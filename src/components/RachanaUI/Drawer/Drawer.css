@@ -1,0 +1,199 @@
+/* ── Root overlay container ── */
+.drawer-root {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.drawer-root-open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* ── Backdrop ── */
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0);
+  transition: background var(--motion-slow) var(--ease-out);
+}
+
+.drawer-backdrop-visible {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ── Panel base ── */
+.drawer-panel {
+  position: absolute;
+  background: var(--neutral-0);
+  border-color: var(--neutral-200);
+  border-style: solid;
+  border-width: 0;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  will-change: transform;
+  transition: transform var(--motion-slow) var(--ease-out);
+}
+
+/* ── Side variants — position + initial transform ── */
+.drawer-panel-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-left-width: 1px;
+  transform: translateX(100%);
+}
+
+.drawer-panel-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-right-width: 1px;
+  transform: translateX(-100%);
+}
+
+.drawer-panel-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  transform: translateY(-100%);
+}
+
+.drawer-panel-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top-width: 1px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  transform: translateY(100%);
+}
+
+/* ── Open state — reset transform ── */
+.drawer-panel-open {
+  transform: translate(0, 0);
+}
+
+/* ── Header ── */
+.drawer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-6);
+  border-bottom: 1px solid var(--neutral-200);
+  flex-shrink: 0;
+}
+
+.drawer-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Close button ── */
+.drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: 1px solid var(--neutral-200);
+  background: transparent;
+  border-radius: var(--radius-md);
+  color: var(--neutral-400);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out);
+  margin-top: 2px;
+}
+
+.drawer-close:hover {
+  background: var(--neutral-50);
+  color: var(--neutral-700);
+  border-color: var(--neutral-200);
+}
+
+.drawer-close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 113, 230, 0.18);
+}
+
+/* ── Title ── */
+.drawer-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--neutral-700);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Description ── */
+.drawer-description {
+  font-size: 13px;
+  color: var(--neutral-400);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Scrollable content ── */
+.drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-6);
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-200) transparent;
+}
+
+.drawer-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.drawer-content::-webkit-scrollbar-thumb {
+  background: var(--neutral-200);
+  border-radius: var(--radius-full);
+}
+
+/* ── Footer ── */
+.drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-6);
+  border-top: 1px solid var(--neutral-200);
+  background: var(--neutral-0);
+  flex-shrink: 0;
+}
+
+/* ── Separator ── */
+.drawer-separator {
+  height: 1px;
+  background: var(--neutral-200);
+  margin: 0 var(--sp-6);
+  flex-shrink: 0;
+}
+
+/* ── Trigger ── */
+.drawer-trigger {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .drawer-panel,
+  .drawer-backdrop {
+    transition: none !important;
+  }
+}

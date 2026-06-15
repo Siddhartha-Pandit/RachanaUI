@@ -1,0 +1,326 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Card — Nexus Design System
+   All values use CSS custom properties from the Nexus token set.
+   Never add raw hex values here.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── ROOT ── */
+
+.card-root {
+    background: var(--neutral-0);
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition:
+        box-shadow var(--motion-base) var(--ease-out),
+        border-color var(--motion-base) var(--ease-out);
+}
+
+.card-root--hoverable:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--neutral-300, var(--neutral-200));
+}
+
+.card-root--clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.card-root--clickable:active {
+    transform: scale(0.995);
+}
+
+/* ── HEADER ── */
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    padding: var(--sp-6) var(--sp-6) 0;
+}
+
+/*
+  Row layout: places children side-by-side (e.g. title group + badge).
+  Wrap title + description in <Card.HeaderText> when using this layout.
+*/
+.card-header--row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-3);
+}
+
+.card-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+    min-width: 0;
+    /* allow text truncation inside flex */
+}
+
+/* ── TITLE ── */
+
+.card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--neutral-700);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ── DESCRIPTION ── */
+
+.card-description {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--neutral-400);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ── CONTENT ── */
+
+.card-content {
+    padding: var(--sp-6);
+    flex: 1;
+}
+
+.card-content--flush {
+    padding: 0;
+}
+
+.card-content--sm {
+    padding: var(--sp-4);
+}
+
+.card-content--lg {
+    padding: var(--sp-8);
+}
+
+/* ── FOOTER ── */
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-4) var(--sp-6);
+    border-top: 1px solid var(--neutral-200);
+}
+
+.card-footer--start {
+    justify-content: flex-start;
+}
+
+.card-footer--center {
+    justify-content: center;
+}
+
+.card-footer--end {
+    justify-content: flex-end;
+}
+
+.card-footer--between {
+    justify-content: space-between;
+}
+
+/* ── SEPARATOR ── */
+
+.card-separator {
+    height: 1px;
+    background: var(--neutral-200);
+    margin: 0 var(--sp-6);
+}
+
+/* Extends separator to full card width (no horizontal margin) */
+.card-separator--full {
+    margin: 0;
+}
+
+/* ── BADGE ── */
+
+.card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    padding: 2px var(--sp-2);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-radius: var(--radius-full);
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.card-badge--brand {
+    background: var(--brand-50);
+    color: var(--brand-400);
+    border-color: var(--brand-200, rgba(34, 113, 230, 0.3));
+}
+
+.card-badge--success {
+    background: var(--success-50);
+    color: var(--success-400);
+    border-color: var(--success-100, rgba(18, 183, 106, 0.3));
+}
+
+.card-badge--warning {
+    background: var(--warning-50);
+    color: var(--warning-400);
+    border-color: var(--warning-100, rgba(247, 144, 9, 0.3));
+}
+
+.card-badge--danger {
+    background: var(--danger-50);
+    color: var(--danger-400);
+    border-color: var(--danger-100, rgba(217, 45, 32, 0.3));
+}
+
+.card-badge--neutral {
+    background: var(--neutral-50);
+    color: var(--neutral-400);
+    border-color: var(--neutral-200);
+}
+
+/* ── ICON AREA ── */
+
+/*
+  A 40×40 rounded container for a leading icon in card headers or stat rows.
+  Use <Card.Icon variant="brand"> wrapping a 20px SVG or icon component.
+*/
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-icon--brand {
+    background: var(--brand-50);
+    color: var(--brand-400);
+}
+
+.card-icon--success {
+    background: var(--success-50);
+    color: var(--success-400);
+}
+
+.card-icon--warning {
+    background: var(--warning-50);
+    color: var(--warning-400);
+}
+
+.card-icon--danger {
+    background: var(--danger-50);
+    color: var(--danger-400);
+}
+
+.card-icon--neutral {
+    background: var(--neutral-50);
+    color: var(--neutral-400);
+}
+
+/* ── STAT ── */
+
+.card-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+}
+
+.card-stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--neutral-400);
+}
+
+.card-stat-value {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    color: var(--neutral-700);
+    line-height: 1.1;
+}
+
+.card-stat-trend {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card-stat-trend--up {
+    color: var(--success-400);
+}
+
+.card-stat-trend--down {
+    color: var(--danger-400);
+}
+
+.card-stat-trend--neutral {
+    color: var(--neutral-400);
+}
+
+/* ── STAT GRID ── */
+
+/*
+  Lay multiple <Card.Stat> elements in a grid inside a single card.
+  Wrap them in <Card.StatGrid columns={2|3}>.
+*/
+.card-stat-grid {
+    display: grid;
+    gap: var(--sp-4);
+}
+
+.card-stat-grid--2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.card-stat-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── DARK MODE ── */
+
+/*
+  Token values in [data-theme="dark"] automatically update --neutral-*,
+  --brand-*, --success-*, etc. so no per-component dark overrides are
+  needed. The rules below only exist to reinforce tokens that might
+  otherwise fall back to a cached light value in some environments.
+*/
+
+[data-theme="dark"] .card-root {
+    background: var(--neutral-0);
+    border-color: var(--neutral-200);
+}
+
+[data-theme="dark"] .card-footer {
+    border-color: var(--neutral-200);
+}
+
+[data-theme="dark"] .card-separator {
+    background: var(--neutral-200);
+}
+
+/* ── REDUCED MOTION ── */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
