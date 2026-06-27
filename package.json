@@ -16,12 +16,14 @@
     "./dist/style.css": "./dist/rachana-ui.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/components/RachanaUI"
   ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "prepare": "npm run build",
+    "postinstall": "node scripts/postinstall.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
