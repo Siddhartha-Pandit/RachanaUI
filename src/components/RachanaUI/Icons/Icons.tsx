@@ -2610,7 +2610,44 @@ export const PrintIcon: React.FC<IconProps> = (p) => (
     <rect x="6" y="14" width="12" height="8" rx="1" />
   </IconBase>
 );
+// ── Trade Log icon — document with trade arrow cursor
+export const TradeLogIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="3" />
+    <path d="M8 8h5M8 11h3" />
+    <path d="M14 14v4M14 18l-2-2M14 18l2-2" />
+    <path d="M16 8l2 2-2 2" />
+  </IconBase>
+);
 
+// ── Trade Analysis icon — bar chart in rounded square
+export const TradeAnalysisIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="3" />
+    <rect x="7" y="13" width="2.5" height="5" rx="0.5" />
+    <rect x="11" y="10" width="2.5" height="8" rx="0.5" />
+    <rect x="15" y="7" width="2.5" height="11" rx="0.5" />
+  </IconBase>
+);
+
+// ── Learn icon — graduation cap
+export const LearnIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <path d="M12 3 2 8.5l10 5.5 10-5.5L12 3z" />
+    <path d="M7 11v5c0 2 2.5 3 5 3s5-1 5-3v-5" />
+    <line x1="22" y1="8.5" x2="22" y2="13.5" />
+  </IconBase>
+);
+
+// ── Portfolio / Wallet icon — wallet in rounded square
+export const TradeWalletIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="3" />
+    <rect x="7" y="9" width="10" height="7" rx="1.5" />
+    <path d="M7 11.5h10" />
+    <circle cx="14.5" cy="13.5" r="1" fill="currentColor" stroke="none" />
+  </IconBase>
+);
 export const QrCodeIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="3" width="6" height="6" rx="1" />
@@ -2786,7 +2823,8 @@ export const icons = {
   ShareIcon, ExternalLinkIcon, RedirectIcon, ShortcutIcon, HotkeyIcon,
   PrintIcon, QrCodeIcon, BarcodeIcon, ClipboardIcon, ChecklistIcon,
   DividerIcon, SeparatorIcon, SpacerIcon, MoreHorizontalIcon, MoreVerticalIcon,
-  OverflowIcon, BreadcrumbIcon, DotIcon, CircleIcon, SquareIcon, DiamondIcon, ChevronRightIcon
+  OverflowIcon, BreadcrumbIcon, DotIcon, CircleIcon, SquareIcon, DiamondIcon, ChevronRightIcon,
+  TradeAnalysisIcon, TradeLogIcon, TradeWalletIcon, LearnIcon
 };
 
 export type IconName = keyof typeof icons;
