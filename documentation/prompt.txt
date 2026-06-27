@@ -1,0 +1,77 @@
+You are a senior technical writer and UI design system engineer.
+
+Your task is to write professional, production-ready documentation for a single UI component.
+
+Component: Icon  
+Framework: [React]  
+Library name: [RachanaUI]  
+Styling: [CSS ]
+
+Write documentation that matches modern design systems like Material UI, Chakra UI, or Ant Design.
+
+Requirements:
+
+1. Overview
+- Explain what the Icon component is
+- What problems it solves
+- list all icons 
+
+2. Features
+List key features such as:
+- Collapsible / expandable behavior
+- Responsive behavior (mobile/desktop)
+- Nested navigation support
+- Active item highlighting
+- Icon support
+- Custom styling support
+
+3. Import
+Provide a clean import example.
+
+4. Basic Usage
+Show a simple working code example.
+
+5. Variants
+Include examples for:
+- Fixed Sidebar
+- Collapsible Sidebar
+- Icon-only (mini) Sidebar
+- Responsive Sidebar (mobile drawer behavior)
+
+6. Props Table
+Create a clean table with:
+- Prop name
+- Type
+- Default value
+- Description
+
+Include common props like:
+collapsed, onCollapse, items, width, defaultActiveKey, responsive
+
+7. Navigation Structure
+Show an example data structure (array or JSON) used to build sidebar items.
+
+8. Accessibility
+Explain:
+- Keyboard navigation
+- ARIA roles
+- Focus management
+
+9. Responsive Behavior
+Explain how it behaves on mobile, tablet, and desktop.
+
+10. Best Practices
+Include do’s and don’ts for using Sidebar.
+
+11. Common Use Cases
+Give real-world examples like:
+- Admin dashboards
+- SaaS applications
+- Documentation layouts
+
+Output format:
+- Use clean Markdown
+- Include real code examples
+- Keep tone professional and developer-focused
+- Avoid marketing language
+- Make it ready for documentation tools like Storybook, Docusaurus, or VitePress
