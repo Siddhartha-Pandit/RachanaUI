@@ -2754,6 +2754,14 @@ export const DiamondIcon: React.FC<IconProps> = (p) => (
     <polygon points="12 2 22 12 12 22 2 12 12 2" />
   </IconBase>
 );
+export const GoogleIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p} variant="filled">
+    <path d="M21 12.22C21 11.6 20.95 11 20.86 10.4H12v3.43h5.05a4.32 4.32 0 0 1-1.87 2.83v2.34h3.02C20.12 17.36 21 14.97 21 12.22z" fill="#4285F4" stroke="none" />
+    <path d="M12 21c2.54 0 4.67-.84 6.23-2.27l-3.02-2.34c-.84.56-1.91.9-3.21.9-2.47 0-4.56-1.67-5.31-3.91H3.57v2.42A9 9 0 0 0 12 21z" fill="#34A853" stroke="none" />
+    <path d="M6.69 13.38A5.42 5.42 0 0 1 6.41 12c0-.48.08-.94.28-1.38V8.2H3.57A9 9 0 0 0 3 12c0 1.45.35 2.82.57 3.8l3.12-2.42z" fill="#FBBC05" stroke="none" />
+    <path d="M12 6.58c1.39 0 2.64.48 3.62 1.42l2.71-2.71C16.66 3.75 14.53 3 12 3a9 9 0 0 0-8.43 5.2l3.12 2.42C7.44 8.25 9.53 6.58 12 6.58z" fill="#EA4335" stroke="none" />
+  </IconBase>
+);
 
 /* ========================================================================== */
 /*                           ICON MAP & TYPES                                 */
@@ -2824,7 +2832,7 @@ export const icons = {
   PrintIcon, QrCodeIcon, BarcodeIcon, ClipboardIcon, ChecklistIcon,
   DividerIcon, SeparatorIcon, SpacerIcon, MoreHorizontalIcon, MoreVerticalIcon,
   OverflowIcon, BreadcrumbIcon, DotIcon, CircleIcon, SquareIcon, DiamondIcon, ChevronRightIcon,
-  TradeAnalysisIcon, TradeLogIcon, TradeWalletIcon, LearnIcon
+  TradeAnalysisIcon, TradeLogIcon, TradeWalletIcon, LearnIcon, GoogleIcon
 };
 
 export type IconName = keyof typeof icons;
