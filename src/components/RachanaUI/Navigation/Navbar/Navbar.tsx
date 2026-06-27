@@ -19,10 +19,11 @@ function Navbar({
   children,
   variant = "default",
   className = "",
+  ...props
 }: NavbarProps) {
   return (
     <NavbarContext.Provider value={{ variant }}>
-      <header className={`navbar navbar--${variant} ${className}`}>
+      <header className={`navbar navbar--${variant} ${className}`} {...props}>
         <div className="navbar-inner">{children}</div>
       </header>
     </NavbarContext.Provider>
@@ -39,28 +40,31 @@ function NavbarBrand({
   children,
   href = "/",
   className = "",
+  ...props
 }: NavbarBrandProps) {
   return (
-    <a href={href} className={`navbar-brand ${className}`}>
+    <a href={href} className={`navbar-brand ${className}`} {...props}>
       {children}
     </a>
   );
 }
 
-interface NavbarContentProps {
+interface NavbarContentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   align?: "start" | "center" | "end";
-  className?: string;
 }
 
 function NavbarContent({
   children,
   align = "start",
   className = "",
+  ...props
 }: NavbarContentProps) {
   return (
     <div
       className={`navbar-content navbar-content--${align} ${className}`}
+      {...props}
     >
       {children}
     </div>
@@ -77,6 +81,7 @@ function NavbarItem({
   children,
   active = false,
   className = "",
+  ...props
 }: NavbarItemProps) {
   return (
     <div
@@ -87,6 +92,7 @@ function NavbarItem({
       ]
         .filter(Boolean)
         .join(" ")}
+      {...props}
     >
       {children}
     </div>
@@ -107,6 +113,7 @@ function NavbarLink({
   active = false,
   onClick,
   className = "",
+  ...props
 }: NavbarLinkProps) {
   return (
     <a
@@ -119,6 +126,7 @@ function NavbarLink({
       ]
         .filter(Boolean)
         .join(" ")}
+      {...props}
     >
       {children}
     </a>
@@ -131,9 +139,10 @@ interface NavbarSeparatorProps {
 
 function NavbarSeparator({
   className = "",
+  ...props
 }: NavbarSeparatorProps) {
   return (
-    <div className={`navbar-separator ${className}`} />
+    <div className={`navbar-separator ${className}`} {...props} />
   );
 }
 
