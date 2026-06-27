@@ -2614,9 +2614,9 @@ export const PrintIcon: React.FC<IconProps> = (p) => (
 export const TradeLogIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="3" width="18" height="18" rx="3" />
-    <path d="M8 8h5M8 11h3" />
-    <path d="M14 14v4M14 18l-2-2M14 18l2-2" />
-    <path d="M16 8l2 2-2 2" />
+    <path d="M7 8h6M7 11h4M7 14h3" />
+    <path d="M15 10l2.5 2.5L15 15" />
+    <path d="M17.5 12.5H13" />
   </IconBase>
 );
 
@@ -2624,9 +2624,9 @@ export const TradeLogIcon: React.FC<IconProps> = (p) => (
 export const TradeAnalysisIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="3" width="18" height="18" rx="3" />
-    <rect x="7" y="13" width="2.5" height="5" rx="0.5" />
-    <rect x="11" y="10" width="2.5" height="8" rx="0.5" />
-    <rect x="15" y="7" width="2.5" height="11" rx="0.5" />
+    <rect x="7" y="14" width="2.5" height="4" rx="0.5" fill="currentColor" stroke="none" />
+    <rect x="11" y="11" width="2.5" height="7" rx="0.5" fill="currentColor" stroke="none" />
+    <rect x="15" y="8" width="2.5" height="10" rx="0.5" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
