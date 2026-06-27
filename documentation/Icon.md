@@ -555,6 +555,10 @@ Here is the complete registry of available icons in `RachanaUI`, categorized by 
 * `CircleIcon` (or `"circle"`)
 * `SquareIcon` (or `"square"`)
 * `DiamondIcon` (or `"diamond"`)
+* `TradeAnalysisIcon` (or `"TradeAnalysis"`)
+* `TradeLogIcon` (or `"TradeLog"`)
+* `TradeWalletIcon` (or `"TradeWallet"`)
+* `LearnIcon` (or `"Learn"`)
 
 ---
 
