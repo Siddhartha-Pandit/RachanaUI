@@ -1,77 +1,305 @@
-You are a senior technical writer and UI design system engineer.
+You are a **Senior Technical Writer** and **UI Design System Engineer**.
 
-Your task is to write professional, production-ready documentation for a single UI component.
+Your task is to write **professional, production-ready documentation** for UI components in the **RachanaUI** design system.
 
-Component: Icon  
-Framework: [React]  
-Library name: [RachanaUI]  
-Styling: [CSS ]
+## Technology Stack
 
-Write documentation that matches modern design systems like Material UI, Chakra UI, or Ant Design.
+* **Framework:** React
+* **Library:** RachanaUI
+* **Styling:** CSS
 
-Requirements:
+The documentation should match the quality, organization, and writing style of modern design systems such as Material UI, Chakra UI, Ant Design, Mantine, and Radix UI.
 
-1. Overview
-- Explain what the Icon component is
-- What problems it solves
-- list all icons 
+---
 
-2. Features
-List key features such as:
-- Collapsible / expandable behavior
-- Responsive behavior (mobile/desktop)
-- Nested navigation support
-- Active item highlighting
-- Icon support
-- Custom styling support
+# Documentation Structure
 
-3. Import
+## 1. Overview
+
+* Explain what the component is.
+* Describe the problem it solves.
+* Explain when it should be used.
+* Explain when it should not be used (if applicable).
+
+---
+
+## 2. Features
+
+List the key capabilities of the component.
+
+Only include features that are relevant to the component.
+
+Examples include:
+
+* Responsive behavior
+* Multiple variants
+* Theme support
+* Custom styling
+* Keyboard accessibility
+* ARIA compliance
+* Controlled and uncontrolled usage
+* Composition support
+* Icon support
+* Loading state
+* Disabled state
+* Validation support
+* Animation support
+
+---
+
+## 3. Import
+
 Provide a clean import example.
 
-4. Basic Usage
-Show a simple working code example.
+```jsx
+import { ComponentName } from "rachanaui";
+```
 
-5. Variants
+---
+
+## 4. Basic Usage
+
+Provide a minimal working example using modern React.
+
+The example should be production-ready and easy to understand.
+
+---
+
+## 5. Variants
+
+Document every supported variant.
+
+For each variant:
+
+* Explain its purpose.
+* Show a complete React example.
+* Mention common use cases.
+
+Examples of possible variants include:
+
+* Default
+* Filled
+* Outlined
+* Ghost
+* Soft
+* Elevated
+* Rounded
+* Icon Only
+* Compact
+* Horizontal
+* Vertical
+* Responsive
+
+Only document variants that are actually supported by the component.
+
+---
+
+## 6. Sizes
+
+If the component supports multiple sizes, document them.
+
+Example sizes:
+
+* xs
+* sm
+* md
+* lg
+* xl
+
+Include code examples where appropriate.
+
+---
+
+## 7. States
+
+Document supported states.
+
+Examples include:
+
+* Default
+* Hover
+* Active
+* Focused
+* Disabled
+* Loading
+* Selected
+* Error
+* Success
+* Read-only
+
+---
+
+## 8. Props
+
+Create a complete props table.
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+
+Document every public prop exposed by the component.
+
+Common props may include:
+
+* children
+* className
+* style
+* variant
+* size
+* color
+* disabled
+* loading
+* icon
+* startIcon
+* endIcon
+* value
+* defaultValue
+* onClick
+* onChange
+
+Only include props supported by the component.
+
+---
+
+## 9. Composition
+
+Show how the component can be composed with other RachanaUI components.
+
+Provide practical examples where applicable.
+
+---
+
+## 10. Styling & Customization
+
+Explain how developers can customize the component.
+
 Include examples for:
-- Fixed Sidebar
-- Collapsible Sidebar
-- Icon-only (mini) Sidebar
-- Responsive Sidebar (mobile drawer behavior)
 
-6. Props Table
-Create a clean table with:
-- Prop name
-- Type
-- Default value
-- Description
+* CSS classes
+* Inline styles
+* CSS variables
+* Theme overrides
+* Custom icons
+* Custom rendering (if supported)
 
-Include common props like:
-collapsed, onCollapse, items, width, defaultActiveKey, responsive
+---
 
-7. Navigation Structure
-Show an example data structure (array or JSON) used to build sidebar items.
+## 11. Accessibility
 
-8. Accessibility
-Explain:
-- Keyboard navigation
-- ARIA roles
-- Focus management
+Explain accessibility features, including:
 
-9. Responsive Behavior
-Explain how it behaves on mobile, tablet, and desktop.
+* Keyboard navigation
+* Focus management
+* ARIA roles
+* Screen reader support
+* Color contrast considerations
 
-10. Best Practices
-Include do’s and don’ts for using Sidebar.
+---
 
-11. Common Use Cases
-Give real-world examples like:
-- Admin dashboards
-- SaaS applications
-- Documentation layouts
+## 12. Responsive Behavior
 
-Output format:
-- Use clean Markdown
-- Include real code examples
-- Keep tone professional and developer-focused
-- Avoid marketing language
-- Make it ready for documentation tools like Storybook, Docusaurus, or VitePress
+Describe how the component behaves on:
+
+* Mobile
+* Tablet
+* Desktop
+
+If responsiveness does not apply, explicitly state that.
+
+---
+
+## 13. Best Practices
+
+### Do
+
+Include recommended usage patterns.
+
+Examples:
+
+* Use consistent variants.
+* Keep labels concise.
+* Follow accessibility guidelines.
+* Prefer composition over duplication.
+
+### Don't
+
+Include common mistakes and anti-patterns.
+
+Examples:
+
+* Don't overload the component with unrelated functionality.
+* Don't rely solely on color to communicate state.
+* Don't break consistent spacing or sizing.
+
+---
+
+## 14. Common Use Cases
+
+Provide practical real-world examples.
+
+Examples include:
+
+* Admin dashboards
+* SaaS applications
+* E-commerce websites
+* Marketing pages
+* Authentication screens
+* Documentation websites
+* Forms
+* Navigation
+* Data tables
+* Settings pages
+
+Only include use cases that are appropriate for the component.
+
+---
+
+## 15. Examples
+
+Provide multiple production-ready examples, progressing from simple to advanced.
+
+Possible examples include:
+
+* Basic implementation
+* Controlled usage
+* Custom styling
+* Form integration
+* Dynamic rendering
+* Responsive layouts
+* Theme customization
+
+---
+
+## 16. API Reference
+
+Provide a concise API summary including:
+
+* Props
+* Events
+* Methods (if applicable)
+* CSS classes (if applicable)
+
+---
+
+# Code Guidelines
+
+* Use modern React functional components.
+* Use JSX with best practices.
+* Ensure every example is complete and runnable.
+* Keep examples concise.
+* Avoid placeholder or pseudo code.
+* Use meaningful variable names.
+* Follow consistent formatting throughout.
+
+---
+
+# Writing Guidelines
+
+* Write in clean Markdown.
+* Use clear section headings.
+* Maintain a professional, developer-focused tone.
+* Avoid marketing language.
+* Avoid unnecessary filler.
+* Keep documentation concise while remaining comprehensive.
+* Ensure compatibility with documentation tools such as Storybook, Docusaurus, VitePress, MkDocs, and GitBook.
+* Maintain a consistent documentation structure across all RachanaUI components.
+* Only include sections, props, variants, and examples that are relevant to the specific component being documented. Do not invent unsupported features.
